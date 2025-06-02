@@ -1,3 +1,9 @@
+<div id="language-selector">
+  <button onclick="changeLanguage('fr')">Français</button>
+  <button onclick="changeLanguage('en')">English</button>
+  <button onclick="changeLanguage('es')">Español</button>
+  <button onclick="changeLanguage('tr')">Türkçe</button>
+</div>
 const translations = {
   fr: {
     nav_home: "Accueil",
