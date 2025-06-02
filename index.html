@@ -1,107 +1,43 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>O’PP MANAGER</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <title>Mon site multilingue</title>
 </head>
-<div id="language-selector">
-  <button onclick="changeLanguage('fr')">Français</button>
-  <button onclick="changeLanguage('en')">English</button>
-  <button onclick="changeLanguage('es')">Español</button>
-  <button onclick="changeLanguage('tr')">Türkçe</button>
 <body>
-  <header>
-    <div class="container">
-      <h1>O’PP MANAGER</h1>
-      <nav>
-        <ul>
-          <li><a href="#home" data-i18n="nav_home">Accueil</a></li>
-          <li><a href="#about" data-i18n="nav_about">À propos</a></li>
-          <li><a href="#services" data-i18n="nav_services">Services</a></li>
-          <li><a href="#team" data-i18n="nav_team">Équipe</a></li>
-          <li><a href="#testimonials" data-i18n="nav_testimonials">Témoignages</a></li>
-          <li><a href="#faq" data-i18n="nav_faq">FAQ</a></li>
-          <li><a href="#contact" data-i18n="nav_contact">Contact</a></li>
-        </ul>
-      </nav>
-      <select id="langSwitcher">
-        <option value="fr">🇫🇷 FR</option>
-        <option value="en">🇬🇧 EN</option>
-        <option value="es">🇪🇸 ES</option>
-        <option value="tr">🇹🇷 TR</option>
-      </select>
-    </div>
-  </header>
 
-  <section id="home">
-   <div id="language-selector">
-  <button onclick="changeLanguage('fr')">Français</button>
-  <button onclick="changeLanguage('en')">English</button>
-  <button onclick="changeLanguage('es')">Español</button>
-  <button onclick="changeLanguage('tr')">Türkçe</button>
-</div> <h2 data-i18n="home_title">Bienvenue sur O’PP MANAGER</h2>
-    <p data-i18n="home_text">Votre solution pour la vente professionnelle.</p>
-  </section>
+  <div id="language-selector">
+    <button onclick="changeLanguage('fr')">Français</button>
+    <button onclick="changeLanguage('en')">English</button>
+    <button onclick="changeLanguage('es')">Español</button>
+    <button onclick="changeLanguage('tr')">Türkçe</button>
+  </div>
 
-  <section id="about">
-    <h2 data-i18n="about_title">À propos</h2>
-    <p data-i18n="about_text">Nous aidons les entreprises à mieux vendre grâce à une plateforme intuitive et puissante.</p>
-  </section>
+  <!-- Contenu multilingue -->
+  <h1 data-lang="fr">Bienvenue sur mon site</h1>
+  <h1 data-lang="en">Welcome to my website</h1>
+  <h1 data-lang="es">Bienvenido a mi sitio web</h1>
+  <h1 data-lang="tr">Web siteme hoş geldiniz</h1>
 
-  <section id="services">
-    <h2 data-i18n="services_title">Nos Services</h2>
-    <ul>
-      <li data-i18n="service_1">Gestion des ventes</li>
-      <li data-i18n="service_2">Suivi client</li>
-      <li data-i18n="service_3">Analyse de performance</li>
-    </ul>
-  </section>
+  <p data-lang="fr">Ceci est un exemple de contenu en français.</p>
+  <p data-lang="en">This is an example of English content.</p>
+  <p data-lang="es">Este es un ejemplo de contenido en español.</p>
+  <p data-lang="tr">Bu, Türkçe içerik örneğidir.</p>
 
-  <section id="team">
-    <h2 data-i18n="team_title">Notre Équipe</h2>
-    <p data-i18n="team_text">Une équipe passionnée par la réussite commerciale.</p>
-  </section>
+  <!-- Script pour changer la langue -->
+  <script>
+    function changeLanguage(lang) {
+      const elements = document.querySelectorAll('[data-lang]');
+      elements.forEach(el => {
+        el.style.display = el.getAttribute('data-lang') === lang ? 'block' : 'none';
+      });
+    }
 
-  <section id="testimonials">
-    <h2 data-i18n="testimonials_title">Témoignages</h2>
-    <blockquote data-i18n="testimonial_1">"Une plateforme exceptionnelle pour booster nos ventes !"</blockquote>
-  </section>
+    // Afficher la langue par défaut au chargement
+    document.addEventListener('DOMContentLoaded', () => {
+      changeLanguage('fr');
+    });
+  </script>
 
-  <section id="faq">
-    <h2 data-i18n="faq_title">Foire Aux Questions</h2>
-    <details>
-      <summary data-i18n="faq_q1">Comment commencer ?</summary>
-      <p data-i18n="faq_a1">Créez un compte et commencez à ajouter vos produits.</p>
-    </details>
-  </section>
-
-  <section id="contact">
-    <h2 data-i18n="contact_title">Contactez-nous</h2>
-    <form>
-      <input type="text" placeholder="Nom" required />
-      <input type="email" placeholder="Email" required />
-      <textarea placeholder="Message" required></textarea>
-      <button type="submit" data-i18n="send">Envoyer</button>
-    </form>
-  </section>
-
-  <footer>
-    <p>&copy; 2025 O’PP MANAGER. Tous droits réservés.</p>
-  </footer>
-
-  <script src="script.js"></script>
 </body>
 </html>
-
-
-
-<head>
-  ...
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
-  ...
-  <script src="script.js"></script>
-</body>
