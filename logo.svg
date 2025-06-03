@@ -4,24 +4,46 @@
     .title {
       font-family: 'Poppins', Arial, sans-serif;
       font-size: 28px;
-      fill: #D2B48C;
+      fill: #D2B48C; /* beige clair */
       font-weight: 700;
     }
     .slogan1 {
       font-family: 'Poppins', Arial, sans-serif;
       font-size: 14px;
-      fill: #A67C52;
+      fill: #A67C52; /* beige foncé */
       font-weight: 500;
     }
     .slogan2 {
       font-family: 'Poppins', Arial, sans-serif;
       font-size: 14px;
-      fill: #7D5A2F;
+      fill: #7D5A2F; /* marron clair */
       font-weight: 500;
+    }
+    .icon {
+      fill: #D2B48C;
+      stroke: #A67C52;
+      stroke-width: 1;
     }
   </style>
 
-  <text x="10" y="55" class="title">O'PP MANAGER</text>
-  <text x="10" y="80" class="slogan1">La plateforme tout-en-un : vente & prestations</text>
-  <text x="10" y="100" class="slogan2">Votre partenaire produits & services, en ligne</text>
+  <!-- Icône maison -->
+  <path class="icon" d="M10 70 L30 50 L50 70 V90 H10 Z" />
+  <rect x="22" y="70" width="16" height="20" fill="#A67C52" />
+
+  <!-- Icône clé à molette (simplifiée) -->
+  <circle cx="90" cy="60" r="12" class="icon" />
+  <rect x="85" y="55" width="10" height="10" fill="#A67C52" />
+  <line x1="85" y1="55" x2="75" y2="45" stroke="#A67C52" stroke-width="2" />
+
+  <!-- Icône casque chantier -->
+  <ellipse cx="135" cy="60" rx="18" ry="12" class="icon" />
+  <rect x="120" y="60" width="30" height="12" fill="#A67C52" />
+  <line x1="135" y1="48" x2="135" y2="72" stroke="#A67C52" stroke-width="2" />
+
+  <!-- Texte principal -->
+  <text x="180" y="60" class="title">O'PP MANAGER</text>
+
+  <!-- Slogans -->
+  <text x="180" y="85" class="slogan1">La plateforme tout-en-un : vente & prestations</text>
+  <text x="180" y="105" class="slogan2">Votre partenaire produits & services, en ligne</text>
 </svg>
