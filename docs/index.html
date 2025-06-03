@@ -1,289 +1,227 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Mon Site Pro</title>
-  
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>O'PP MANAGER - Vente & Services</title>
 
-  <style>
-    :root {
-      --color-bg: #f9f9f9;
-      --color-primary: #007bff;
-      --color-nav-bg: #222;
-      --color-text: #333;
-      --color-link: var(--color-primary);
-      --color-section-bg: #fff;
-    }
+<!-- Google Fonts Poppins -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
 
-    /* Mode sombre variables */
-    [data-theme="dark"] {
-      --color-bg: #121212;
-      --color-primary: #1e90ff;
-      --color-nav-bg: #000;
-      --color-text: #eee;
-      --color-link: #1e90ff;
-      --color-section-bg: #222;
-    }
+<style>
+  :root {
+    --beige-light: #F7F1E1;
+    --beige-medium: #D2B48C;
+    --beige-dark: #A67C52;
+    --text-color: #4A3C2F;
+    --background-light: var(--beige-light);
+    --background-dark: #2C2C2C;
+    --text-light: #F7F1E1;
+  }
 
-    body {
-      margin: 0;
-      font-family: 'Poppins', Arial, sans-serif;
-      background-color: var(--color-bg);
-      color: var(--color-text);
-      scroll-behavior: smooth;
-      transition: background-color 0.3s, color 0.3s;
-    }
+  /* Mode sombre */
+  body.dark {
+    background-color: var(--background-dark);
+    color: var(--text-light);
+  }
 
-    nav {
-      background-color: var(--color-nav-bg);
-      color: white;
-      padding: 1em 2em;
-      position: fixed;
-      width: 100%;
-      top: 0;
-      left: 0;
-      display: flex;
-      align-items: center;
-      gap: 1em;
-      z-index: 1000;
-      box-sizing: border-box;
-    }
+  body {
+    margin: 0;
+    font-family: 'Poppins', Arial, sans-serif;
+    background-color: var(--background-light);
+    color: var(--text-color);
+    line-height: 1.6;
+    transition: background-color 0.5s, color 0.5s;
+  }
 
-    nav img {
-      height: 40px;
-      margin-right: 10px;
-    }
+  header {
+    background: var(--beige-medium);
+    padding: 20px;
+    text-align: center;
+  }
 
-    nav a {
-      color: var(--color-link);
-      text-decoration: none;
-      font-weight: 600;
-      transition: color 0.3s;
-    }
-    nav a:hover {
-      color: #fff;
-    }
+  header h1 {
+    margin: 0;
+    font-weight: 700;
+    font-size: 2.5rem;
+    color: var(--beige-light);
+    letter-spacing: 2px;
+  }
 
-    nav .social-links {
-      margin-left: auto;
-      display: flex;
-      gap: 20px;
-    }
-    nav .social-links a {
-      font-weight: normal;
-      font-size: 0.9rem;
-    }
+  header p {
+    margin: 5px 0 0;
+    font-weight: 500;
+    color: var(--beige-light);
+    font-size: 1.1rem;
+  }
 
-    section {
-      background-color: var(--color-section-bg);
-      padding: 100px 20px 60px 20px;
-      min-height: 100vh;
-      box-sizing: border-box;
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fadeInUp 0.8s forwards;
-    }
+  main {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 0 20px;
+  }
 
-    section:nth-child(odd) {
-      background-color: var(--color-bg);
-    }
+  section {
+    margin-bottom: 50px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.8s forwards;
+  }
+  section:nth-child(1) { animation-delay: 0.2s; }
+  section:nth-child(2) { animation-delay: 0.4s; }
+  section:nth-child(3) { animation-delay: 0.6s; }
 
-    h2 {
-      text-align: center;
-      margin-bottom: 1rem;
-    }
+  h2 {
+    font-weight: 700;
+    color: var(--beige-dark);
+    margin-bottom: 15px;
+    border-bottom: 2px solid var(--beige-medium);
+    display: inline-block;
+    padding-bottom: 5px;
+  }
 
-    footer {
-      text-align: center;
-      padding: 1em;
-      background-color: var(--color-nav-bg);
-      color: white;
-      margin-top: 30px;
-    }
+  p {
+    font-weight: 400;
+    font-size: 1.1rem;
+  }
 
-    /* Formulaire */
-    form {
-      max-width: 400px;
-      margin: auto;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
+  /* Formulaire */
+  form {
+    background: var(--beige-light);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 8px rgba(210, 180, 140, 0.4);
+  }
 
-    label {
-      font-weight: 600;
-    }
+  label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+  }
 
-    input, textarea {
-      padding: 8px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      font-family: inherit;
-      font-size: 1rem;
-      resize: vertical;
-      background-color: var(--color-bg);
-      color: var(--color-text);
-      transition: border-color 0.3s;
-    }
+  input, textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid var(--beige-medium);
+    border-radius: 5px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+  }
 
-    input:focus, textarea:focus {
-      border-color: var(--color-primary);
-      outline: none;
-    }
+  input:focus, textarea:focus {
+    border-color: var(--beige-dark);
+    outline: none;
+  }
 
-    button {
-      background-color: var(--color-primary);
-      color: white;
-      border: none;
-      padding: 12px;
-      font-size: 1rem;
-      font-weight: 700;
-      border-radius: 4px;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
+  button {
+    background: var(--beige-dark);
+    color: var(--beige-light);
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
 
-    button:hover {
-      background-color: #0056b3;
-    }
+  button:hover {
+    background: var(--beige-medium);
+  }
 
-    /* Animation fade in */
-    @keyframes fadeInUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
+  /* Mode sombre formulaire */
+  body.dark form {
+    background: #444;
+    box-shadow: 0 0 8px rgba(120, 120, 120, 0.6);
+  }
 
-    /* Switch mode sombre */
-    .switch {
-      margin-left: 20px;
-      display: flex;
-      align-items: center;
-      cursor: pointer;
-      user-select: none;
-    }
+  body.dark input, body.dark textarea {
+    background: #555;
+    border-color: #777;
+    color: var(--text-light);
+  }
 
-    .switch input {
-      display: none;
-    }
+  body.dark input:focus, body.dark textarea:focus {
+    border-color: #bbb;
+  }
 
-    .slider {
-      width: 40px;
-      height: 20px;
-      background-color: #ccc;
-      border-radius: 10px;
-      position: relative;
-      transition: background-color 0.3s;
-    }
+  /* Toggle mode sombre */
+  #toggleTheme {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: var(--beige-medium);
+    border: none;
+    padding: 10px 14px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-weight: 700;
+    color: var(--beige-light);
+    box-shadow: 0 0 8px rgba(210, 180, 140, 0.6);
+    transition: background 0.3s;
+    z-index: 1000;
+  }
 
-    .slider::before {
-      content: "";
-      position: absolute;
-      width: 16px;
-      height: 16px;
-      border-radius: 50%;
-      background: white;
-      top: 2px;
-      left: 2px;
-      transition: transform 0.3s;
-    }
+  #toggleTheme:hover {
+    background: var(--beige-dark);
+  }
 
-    input:checked + .slider {
-      background-color: var(--color-primary);
+  /* Animations fadeInUp */
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
     }
+  }
 
-    input:checked + .slider::before {
-      transform: translateX(20px);
-    }
-  </style>
+</style>
 </head>
 <body>
 
-  <nav>
-    <img src="logo.png" alt="Logo" />
-    <a href="#accueil">Accueil</a>
-    <a href="#apropos">À propos</a>
-    <a href="#themes">Thèmes</a>
-    <a href="#contact">Contact</a>
+<button id="toggleTheme" aria-label="Changer thème clair/sombre">🌓</button>
 
-    <div class="social-links">
-      <a href="https://twitter.com/tonpseudo" target="_blank" rel="noopener">Twitter</a>
-      <a href="https://linkedin.com/in/tonpseudo" target="_blank" rel="noopener">LinkedIn</a>
-      <a href="https://github.com/tonpseudo" target="_blank" rel="noopener">GitHub</a>
-    </div>
+<header>
+  <h1>O'PP MANAGER</h1>
+  <p>La plateforme tout-en-un : vente & prestations</p>
+  <p>Votre partenaire produits & services, en ligne</p>
+</header>
 
-    <!-- Switch mode sombre -->
-    <label class="switch" title="Mode sombre">
-      <input type="checkbox" id="theme-toggle" />
-      <span class="slider"></span>
-    </label>
-  </nav>
-
-  <section id="accueil" style="animation-delay: 0.1s;">
-    <h2>Bienvenue</h2>
-    <p style="text-align:center;">Bienvenue sur mon site professionnel minimaliste.</p>
+<main>
+  <section id="services">
+    <h2>Nos Services</h2>
+    <p><strong>Télécommunication :</strong> Installation et raccordement fibre optique, solutions adaptées à votre domicile ou entreprise.</p>
   </section>
 
-  <section id="apropos" style="animation-delay: 0.3s;">
-    <h2>À propos</h2>
-    <p style="max-width: 600px; margin: 0 auto; text-align: center;">
-      Je suis <strong>[Ton Nom]</strong>, spécialisé dans la création de solutions web simples et élégantes.
-    </p>
+  <section id="vente">
+    <h2>Vente de matériel</h2>
+    <p>Proposez une large gamme de matériel télécom fiable, performant, et au meilleur prix.</p>
   </section>
 
-  <section id="themes" style="animation-delay: 0.5s;">
-    <h2>Thèmes proposés</h2>
-    <ul style="list-style: none; padding: 0; text-align: center; max-width: 300px; margin: auto;">
-      <li>🔹 Thème clair et professionnel</li>
-      <li>🔹 Thème sombre et moderne</li>
-      <li>🔹 Thème créatif et coloré</li>
-    </ul>
-  </section>
+  <section id="contact">
+    <h2>Contactez-nous</h2>
+    <form action="https://formspree.io/f/mlezqrqp" method="POST">
+      <label for="name">Nom complet</label>
+      <input type="text" id="name" name="name" placeholder="Votre nom" required />
 
-  <section id="contact" style="animation-delay: 0.7s;">
-    <h2>Contact</h2>
-    <form action="https://formspree.io/f/toncode" method="POST">
-      <label for="name">Nom :</label>
-      <input type="text" id="name" name="name" required />
+      <label for="email">Email</label>
+      <input type="email" id="email" name="_replyto" placeholder="Votre email" required />
 
-      <label for="email">Email :</label>
-      <input type="email" id="email" name="_replyto" required />
-
-      <label for="message">Message :</label>
-      <textarea id="message" name="message" rows="4" required></textarea>
+      <label for="message">Message</label>
+      <textarea id="message" name="message" rows="4" placeholder="Votre message" required></textarea>
 
       <button type="submit">Envoyer</button>
     </form>
   </section>
+</main>
 
-  <footer>
-    &copy; 2025 Ton Nom - Tous droits réservés
-  </footer>
+<script>
+  const toggleThemeBtn = document.getElementById('toggleTheme');
+  toggleThemeBtn.addEventListener('click', () => {
+    document.body.classList.toggle('dark');
+  });
+</script>
 
-  <script>
-    // Mode sombre toggle avec stockage local
-    const toggle = document.getElementById('theme-toggle');
-    const currentTheme = localStorage.getItem('theme') || 'light';
-
-    if(currentTheme === 'dark') {
-      document.documentElement.setAttribute('data-theme', 'dark');
-      toggle.checked = true;
-    }
-
-    toggle.addEventListener('change', () => {
-      if(toggle.checked) {
-        document.documentElement.setAttribute('data-theme', 'dark');
-        localStorage.setItem('theme', 'dark');
-      } else {
-        document.documentElement.setAttribute('data-theme', 'light');
-        localStorage.setItem('theme', 'light');
-      }
-    });
-  </script>
 </body>
 </html>
 
