@@ -1,0 +1,27 @@
+<svg width="480" height="130" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Logo O'PP MANAGER">
+
+  <style>
+    .title {
+      font-family: 'Poppins', Arial, sans-serif;
+      font-size: 28px;
+      fill: #D2B48C;
+      font-weight: 700;
+    }
+    .slogan1 {
+      font-family: 'Poppins', Arial, sans-serif;
+      font-size: 14px;
+      fill: #A67C52;
+      font-weight: 500;
+    }
+    .slogan2 {
+      font-family: 'Poppins', Arial, sans-serif;
+      font-size: 14px;
+      fill: #7D5A2F;
+      font-weight: 500;
+    }
+  </style>
+
+  <text x="10" y="55" class="title">O'PP MANAGER</text>
+  <text x="10" y="80" class="slogan1">La plateforme tout-en-un : vente & prestations</text>
+  <text x="10" y="100" class="slogan2">Votre partenaire produits & services, en ligne</text>
+</svg>
