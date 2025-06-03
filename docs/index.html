@@ -2,43 +2,94 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Mon Site Pro</title>
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
+
   <style>
+    :root {
+      --color-bg: #f9f9f9;
+      --color-primary: #007bff;
+      --color-nav-bg: #222;
+      --color-text: #333;
+      --color-link: var(--color-primary);
+      --color-section-bg: #fff;
+    }
+
+    /* Mode sombre variables */
+    [data-theme="dark"] {
+      --color-bg: #121212;
+      --color-primary: #1e90ff;
+      --color-nav-bg: #000;
+      --color-text: #eee;
+      --color-link: #1e90ff;
+      --color-section-bg: #222;
+    }
+
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
+      font-family: 'Poppins', Arial, sans-serif;
+      background-color: var(--color-bg);
+      color: var(--color-text);
       scroll-behavior: smooth;
+      transition: background-color 0.3s, color 0.3s;
     }
 
     nav {
-      background-color: #333;
-      color: #fff;
-      padding: 1em;
+      background-color: var(--color-nav-bg);
+      color: white;
+      padding: 1em 2em;
       position: fixed;
       width: 100%;
       top: 0;
       left: 0;
       display: flex;
-      justify-content: center;
-      gap: 2em;
+      align-items: center;
+      gap: 1em;
       z-index: 1000;
+      box-sizing: border-box;
+    }
+
+    nav img {
+      height: 40px;
+      margin-right: 10px;
     }
 
     nav a {
-      color: white;
+      color: var(--color-link);
       text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+    nav a:hover {
+      color: #fff;
+    }
+
+    nav .social-links {
+      margin-left: auto;
+      display: flex;
+      gap: 20px;
+    }
+    nav .social-links a {
+      font-weight: normal;
+      font-size: 0.9rem;
     }
 
     section {
-      padding: 100px 20px;
+      background-color: var(--color-section-bg);
+      padding: 100px 20px 60px 20px;
       min-height: 100vh;
+      box-sizing: border-box;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 0.8s forwards;
     }
 
-    #accueil { background-color: #f0f0f0; }
-    #apropos { background-color: #ffffff; }
-    #themes { background-color: #eaeaea; }
-    #contact { background-color: #f7f7f7; }
+    section:nth-child(odd) {
+      background-color: var(--color-bg);
+    }
 
     h2 {
       text-align: center;
@@ -48,49 +99,191 @@
     footer {
       text-align: center;
       padding: 1em;
-      background-color: #333;
-      color: #fff;
+      background-color: var(--color-nav-bg);
+      color: white;
+      margin-top: 30px;
+    }
+
+    /* Formulaire */
+    form {
+      max-width: 400px;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    label {
+      font-weight: 600;
+    }
+
+    input, textarea {
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-family: inherit;
+      font-size: 1rem;
+      resize: vertical;
+      background-color: var(--color-bg);
+      color: var(--color-text);
+      transition: border-color 0.3s;
+    }
+
+    input:focus, textarea:focus {
+      border-color: var(--color-primary);
+      outline: none;
+    }
+
+    button {
+      background-color: var(--color-primary);
+      color: white;
+      border: none;
+      padding: 12px;
+      font-size: 1rem;
+      font-weight: 700;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    /* Animation fade in */
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Switch mode sombre */
+    .switch {
+      margin-left: 20px;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .switch input {
+      display: none;
+    }
+
+    .slider {
+      width: 40px;
+      height: 20px;
+      background-color: #ccc;
+      border-radius: 10px;
+      position: relative;
+      transition: background-color 0.3s;
+    }
+
+    .slider::before {
+      content: "";
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: white;
+      top: 2px;
+      left: 2px;
+      transition: transform 0.3s;
+    }
+
+    input:checked + .slider {
+      background-color: var(--color-primary);
+    }
+
+    input:checked + .slider::before {
+      transform: translateX(20px);
     }
   </style>
 </head>
 <body>
 
   <nav>
+    <img src="logo.png" alt="Logo" />
     <a href="#accueil">Accueil</a>
     <a href="#apropos">À propos</a>
     <a href="#themes">Thèmes</a>
     <a href="#contact">Contact</a>
+
+    <div class="social-links">
+      <a href="https://twitter.com/tonpseudo" target="_blank" rel="noopener">Twitter</a>
+      <a href="https://linkedin.com/in/tonpseudo" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/tonpseudo" target="_blank" rel="noopener">GitHub</a>
+    </div>
+
+    <!-- Switch mode sombre -->
+    <label class="switch" title="Mode sombre">
+      <input type="checkbox" id="theme-toggle" />
+      <span class="slider"></span>
+    </label>
   </nav>
 
-  <section id="accueil">
+  <section id="accueil" style="animation-delay: 0.1s;">
     <h2>Bienvenue</h2>
     <p style="text-align:center;">Bienvenue sur mon site professionnel minimaliste.</p>
   </section>
 
-  <section id="apropos">
+  <section id="apropos" style="animation-delay: 0.3s;">
     <h2>À propos</h2>
     <p style="max-width: 600px; margin: 0 auto; text-align: center;">
-      Je suis [Ton Nom], spécialisé dans la création de solutions web simples et élégantes.
+      Je suis <strong>[Ton Nom]</strong>, spécialisé dans la création de solutions web simples et élégantes.
     </p>
   </section>
 
-  <section id="themes">
+  <section id="themes" style="animation-delay: 0.5s;">
     <h2>Thèmes proposés</h2>
-    <ul style="list-style: none; padding: 0; text-align: center;">
+    <ul style="list-style: none; padding: 0; text-align: center; max-width: 300px; margin: auto;">
       <li>🔹 Thème clair et professionnel</li>
       <li>🔹 Thème sombre et moderne</li>
       <li>🔹 Thème créatif et coloré</li>
     </ul>
   </section>
 
-  <section id="contact">
+  <section id="contact" style="animation-delay: 0.7s;">
     <h2>Contact</h2>
-    <p style="text-align: center;">Tu peux me contacter à : <a href="mailto:ton@email.com">ton@email.com</a></p>
+    <form action="https://formspree.io/f/toncode" method="POST">
+      <label for="name">Nom :</label>
+      <input type="text" id="name" name="name" required />
+
+      <label for="email">Email :</label>
+      <input type="email" id="email" name="_replyto" required />
+
+      <label for="message">Message :</label>
+      <textarea id="message" name="message" rows="4" required></textarea>
+
+      <button type="submit">Envoyer</button>
+    </form>
   </section>
 
   <footer>
     &copy; 2025 Ton Nom - Tous droits réservés
   </footer>
 
+  <script>
+    // Mode sombre toggle avec stockage local
+    const toggle = document.getElementById('theme-toggle');
+    const currentTheme = localStorage.getItem('theme') || 'light';
+
+    if(currentTheme === 'dark') {
+      document.documentElement.setAttribute('data-theme', 'dark');
+      toggle.checked = true;
+    }
+
+    toggle.addEventListener('change', () => {
+      if(toggle.checked) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+      } else {
+        document.documentElement.setAttribute('data-theme', 'light');
+        localStorage.setItem('theme', 'light');
+      }
+    });
+  </script>
 </body>
 </html>
+
