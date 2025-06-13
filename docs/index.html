@@ -119,6 +119,14 @@ function deleteOffer(index) {
   loadOffers();
 }
 
+// Ajoute cette fonction :
+function deleteOffer(index) {
+  const offers = JSON.parse(localStorage.getItem('offers') || '[]');
+  offers.splice(index, 1);
+  localStorage.setItem('offers', JSON.stringify(offers));
+  loadOffers();
+}
+
     // Soumission du formulaire
     form.addEventListener('submit', (e) => {
       e.preventDefault();
