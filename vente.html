@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>O'PP MANAGER - Vente d'articles</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Pour fixer la bannière */
+    header {
+      position: fixed;
+      top: 0; left: 0; width: 100%; z-index: 50;
+      background: white;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    main {
+      padding-top: 80px; /* hauteur de la bannière */
+    }
+  </style>
+</head>
+<body class="bg-gray-50 min-h-screen flex flex-col">
+
+  <!-- Bannière / Menu -->
+  <header>
+    <div class="max-w-7xl mx-auto flex items-center justify-between py-4 px-6">
+      <a href="index.html" class="flex items-center space-x-2 text-blue-700 font-bold text-2xl select-none">
+        O'PP MANAGER
+      </a>
+      <nav>
+        <ul class="flex space-x-6 text-gray-700 font-semibold">
+          <li><a href="index.html" class="hover:text-blue-600 transition">Accueil</a></li>
+          <li><a href="vente.html" class="hover:text-blue-600 transition">Vente</a></li>
+          <li><a href="index.html#about-contact" class="hover:text-blue-600 transition">À propos</a></li>
+          <li><a href="index.html#form-offer" class="hover:text-blue-600 transition">Publier une offre</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-6 flex-grow">
+
+    <h1 class="text-4xl font-bold text-blue-700 mb-8">Vente d'articles</h1>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+      <!-- Article 1 -->
+      <div class="bg-white rounded-lg shadow p-4 flex flex-col items-center">
+        <img src="https://via.placeholder.com/200" alt="Article 1" class="mb-4 rounded-md" />
+        <h2 class="text-xl font-semibold mb-2">Article 1</h2>
+        <p class="mb-2 text-gray-600">Description courte de l’article 1.</p>
+        <p class="font-bold text-lg mb-4">25 €</p>
+        <button class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">Ajouter au panier</button>
+      </div>
+
+      <!-- Article 2 -->
+      <div class="bg-white rounded-lg shadow p-4 flex flex-col items-center">
+        <img src="https://via.placeholder.com/200" alt="Article 2" class="mb-4 rounded-md" />
+        <h2 class="text-xl font-semibold mb-2">Article 2</h2>
+        <p class="mb-2 text-gray-600">Description courte de l’article 2.</p>
+        <p class="font-bold text-lg mb-4">40 €</p>
+        <button class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">Ajouter au panier</button>
+      </div>
+
+      <!-- Article 3 -->
+      <div class="bg-white rounded-lg shadow p-4 flex flex-col items-center">
+        <img src="https://via.placeholder.com/200" alt="Article 3" class="mb-4 rounded-md" />
+        <h2 class="text-xl font-semibold mb-2">Article 3</h2>
+        <p class="mb-2 text-gray-600">Description courte de l’article 3.</p>
+        <p class="font-bold text-lg mb-4">15 €</p>
+        <button class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">Ajouter au panier</button>
+      </div>
+
+    </div>
+
+  </main>
+
+  <footer class="bg-white text-center text-gray-500 py-6 text-sm select-none shadow-inner mt-12">
+    &copy; 2025 O'PP MANAGER — Tous droits réservés
+  </footer>
+
+</body>
+</html>
