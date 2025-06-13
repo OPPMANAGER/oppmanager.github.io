@@ -14,7 +14,7 @@
     }
     header {
       position: fixed;
-      top: 0; left: 0; width: 100%; z-index: 50;
+      top: 0; left: 0; width: 100%; z-index: 100;
       background: white;
       box-shadow: 0 4px 10px rgba(0,0,0,0.1);
       display: flex;
@@ -27,6 +27,8 @@
       color: #374151;
       text-decoration: none;
       font-weight: 500;
+      position: relative;
+      z-index: 110;
     }
     nav a:last-child {
       margin-right: 0;
@@ -45,10 +47,31 @@
       padding: 1.5rem 0;
       margin-top: 2rem;
     }
-    /* Mini panier */
-    #mini-panier {
+
+    /* Mini panier bouton (icône) */
+    #panier-toggle {
       position: fixed;
       top: 1rem;
+      right: 1rem;
+      background: #2563eb;
+      color: white;
+      border-radius: 50%;
+      width: 48px;
+      height: 48px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      z-index: 200;
+      user-select: none;
+    }
+
+    /* Mini panier panel (caché par défaut) */
+    #mini-panier {
+      position: fixed;
+      top: 60px;
       right: 1rem;
       background: white;
       border: 1px solid #ddd;
@@ -59,7 +82,11 @@
       box-shadow: 0 2px 10px rgba(0,0,0,0.15);
       padding: 1rem;
       font-size: 0.9rem;
-      z-index: 100;
+      z-index: 190;
+      display: none;
+    }
+    #mini-panier.show {
+      display: block;
     }
     #mini-panier h3 {
       margin-top: 0;
@@ -96,7 +123,7 @@
 <body>
 
 <header>
-  <a href="#home" style="font-weight: bold; font-size: 1.5rem; color: #2563eb; text-decoration: none;">O'PP MANAGER</a>
+  <a href="#home" style="font-weight: bold; font-size: 1.5rem; color: #2563eb; text-decoration: none; z-index: 110;">O'PP MANAGER</a>
   <nav>
     <a href="#home">Accueil</a>
     <a href="#vente">Vente</a>
@@ -106,7 +133,12 @@
   </nav>
 </header>
 
-<!-- Mini panier visible -->
+<!-- Bouton panier -->
+<div id="panier-toggle" aria-label="Afficher ou cacher le panier" role="button" tabindex="0">
+  🛒
+</div>
+
+<!-- Mini panier (initialement caché) -->
 <div id="mini-panier" aria-live="polite" aria-label="Panier">
   <h3>Panier</h3>
   <ul id="panier-items">
@@ -116,7 +148,6 @@
 </div>
 
 <main>
-
   <section id="home" style="margin-bottom: 3rem;">
     <h1 style="font-size: 3rem; font-weight: bold; color: #2563eb; margin-bottom: 1rem;">Bienvenue chez O'PP MANAGER</h1>
     <p style="font-size: 1.125rem; color: #4b5563;">Découvrez nos offres et nos articles à vendre.</p>
@@ -125,7 +156,6 @@
   <section id="vente" style="margin-bottom: 3rem;">
     <h2 style="font-size: 2.25rem; font-weight: bold; color: #2563eb; margin-bottom: 2rem;">Vente d'articles</h2>
     <div style="display: flex; gap: 2rem; flex-wrap: wrap; justify-content: center;">
-
       <div style="background: white; border-radius: 0.5rem; box-shadow: 0 1px 6px rgba(0,0,0,0.1); padding: 1rem; width: 250px; text-align: center;">
         <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=200&q=80" alt="Sac à dos randonnée" style="border-radius: 0.375rem; margin-bottom: 1rem; max-width: 100%;" />
         <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem;">Sac à dos randonnée</h3>
@@ -133,7 +163,6 @@
         <p style="font-weight: bold; font-size: 1.125rem; margin-bottom: 1rem;">60 €</p>
         <button class="btn-ajouter" style="background-color: #2563eb; color: white; padding: 0.5rem 1rem; border: none; border-radius: 0.375rem; cursor: pointer;">Ajouter au panier</button>
       </div>
-
       <div style="background: white; border-radius: 0.5rem; box-shadow: 0 1px 6px rgba(0,0,0,0.1); padding: 1rem; width: 250px; text-align: center;">
         <img src="https://images.unsplash.com/photo-1549924231-f129b911e442?auto=format&fit=crop&w=200&q=80" alt="Casque vélo" style="border-radius: 0.375rem; margin-bottom: 1rem; max-width: 100%;" />
         <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem;">Casque vélo</h3>
@@ -141,7 +170,6 @@
         <p style="font-weight: bold; font-size: 1.125rem; margin-bottom: 1rem;">45 €</p>
         <button class="btn-ajouter" style="background-color: #2563eb; color: white; padding: 0.5rem 1rem; border: none; border-radius: 0.375rem; cursor: pointer;">Ajouter au panier</button>
       </div>
-
       <div style="background: white; border-radius: 0.5rem; box-shadow: 0 1px 6px rgba(0,0,0,0.1); padding: 1rem; width: 250px; text-align: center;">
         <img src="https://images.unsplash.com/photo-1517433456452-f9633a875f6f?auto=format&fit=crop&w=200&q=80" alt="Montre connectée" style="border-radius: 0.375rem; margin-bottom: 1rem; max-width: 100%;" />
         <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem;">Montre connectée</h3>
@@ -149,12 +177,8 @@
         <p style="font-weight: bold; font-size: 1.125rem; margin-bottom: 1rem;">120 €</p>
         <button class="btn-ajouter" style="background-color: #2563eb; color: white; padding: 0.5rem 1rem; border: none; border-radius: 0.375rem; cursor: pointer;">Ajouter au panier</button>
       </div>
-
     </div>
   </section>
-
-  <!-- Tes autres sections restent inchangées -->
-
 </main>
 
 <footer>
@@ -244,6 +268,20 @@
 
       alert(`L'article "${titre}" a été ajouté au panier !`);
     });
+  });
+
+  // Toggle affichage mini panier
+  const toggleBtn = document.getElementById('panier-toggle');
+  const miniPanier = document.getElementById('mini-panier');
+
+  toggleBtn.addEventListener('click', () => {
+    miniPanier.classList.toggle('show');
+  });
+  toggleBtn.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      miniPanier.classList.toggle('show');
+    }
   });
 
   // Initialiser affichage panier au chargement
