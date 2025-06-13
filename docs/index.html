@@ -6,7 +6,6 @@
   <title>O'PP MANAGER - Accueil</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    /* Ombre subtile pour la bannière */
     .banner-shadow {
       box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     }
@@ -14,10 +13,10 @@
 </head>
 <body class="bg-gray-50 min-h-screen flex flex-col">
 
-  <!-- Bannière + logo + menu -->
+  <!-- Bannière fixe -->
   <header class="banner-shadow bg-white fixed top-0 left-0 w-full z-50">
     <div class="max-w-7xl mx-auto flex items-center justify-between py-4 px-6">
-      <!-- Logo SVG textuel -->
+      <!-- Logo -->
       <a href="index.html" class="flex items-center space-x-2">
         <svg width="36" height="36" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-blue-600">
           <circle cx="50" cy="50" r="48" stroke="#3b82f6" stroke-width="6" />
@@ -30,7 +29,7 @@
       <nav>
         <ul class="flex space-x-6 text-gray-700 font-semibold">
           <li><a href="index.html" class="hover:text-blue-600 transition">Accueil</a></li>
-          <li><a href="about.html" class="hover:text-blue-600 transition">À propos</a></li>
+          <li><a href="#about-contact" class="hover:text-blue-600 transition">À propos</a></li>
           <li><a href="#form-offer" class="hover:text-blue-600 transition">Publier une offre</a></li>
         </ul>
       </nav>
@@ -40,47 +39,69 @@
   <!-- Contenu principal -->
   <main class="flex-grow pt-24 max-w-7xl mx-auto px-6">
 
-    <!-- Bannière image personnalisée -->
-    <section class="relative rounded-lg overflow-hidden mb-12 shadow-lg">
-      <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1200&q=80" alt="Bannière O'PP MANAGER" class="w-full h-56 object-cover brightness-90" />
-      <div class="absolute inset-0 flex flex-col justify-center items-center text-white text-center px-4">
-        <h1 class="text-4xl sm:text-5xl font-extrabold drop-shadow-lg mb-2">Gérez & Vendez vos offres facilement</h1>
-        <p class="text-lg sm:text-xl drop-shadow-md max-w-2xl">Publiez vos annonces, suivez les offres, et développez votre activité avec O'PP MANAGER.</p>
-      </div>
-    </section>
-
-    <!-- Formulaire de publication -->
-    <section id="form-offer" class="mb-16 bg-white rounded-lg shadow p-8">
-      <h2 class="text-3xl font-semibold text-blue-700 mb-6 border-b-4 border-blue-500 inline-block pb-2">Publier une offre</h2>
-      <form id="offerForm" class="space-y-6 max-w-3xl">
+    <!-- Formulaire Publier une offre -->
+    <section id="form-offer" class="max-w-4xl mx-auto bg-white rounded-lg shadow p-8 mb-12">
+      <h1 class="text-4xl font-bold text-blue-700 mb-6 border-b-4 border-blue-500 inline-block pb-2">Publier une offre</h1>
+      <form id="offerForm" class="space-y-6" action="#" method="post">
         <div>
-          <label for="name" class="block font-medium text-gray-700 mb-1">Nom de l'entreprise</label>
-          <input type="text" id="name" required class="w-full rounded-md border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+          <label for="companyName" class="block mb-2 font-semibold text-gray-700">Nom de l’entreprise</label>
+          <input type="text" id="companyName" name="companyName" required class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
         </div>
         <div>
-          <label for="description" class="block font-medium text-gray-700 mb-1">Description</label>
-          <textarea id="description" required rows="4" class="w-full rounded-md border border-gray-300 px-4 py-2 resize-y focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+          <label for="description" class="block mb-2 font-semibold text-gray-700">Descriptif</label>
+          <textarea id="description" name="description" rows="4" required class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
         </div>
         <div>
-          <label for="contact" class="block font-medium text-gray-700 mb-1">Contact</label>
-          <input type="text" id="contact" required class="w-full rounded-md border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+          <label for="contact" class="block mb-2 font-semibold text-gray-700">Contact</label>
+          <input type="text" id="contact" name="contact" required class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
         </div>
         <div>
-          <label for="location" class="block font-medium text-gray-700 mb-1">Localisation</label>
-          <input type="text" id="location" required class="w-full rounded-md border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+          <label for="location" class="block mb-2 font-semibold text-gray-700">Localisation</label>
+          <input type="text" id="location" name="location" required class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
         </div>
         <div>
-          <label for="price" class="block font-medium text-gray-700 mb-1">Prix (€)</label>
-          <input type="number" id="price" required class="w-full rounded-md border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+          <label for="price" class="block mb-2 font-semibold text-gray-700">Prix</label>
+          <input type="number" id="price" name="price" required class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
         </div>
-        <button type="submit" class="bg-blue-600 text-white px-6 py-3 rounded-md font-semibold hover:bg-blue-700 transition">Publier l'offre</button>
+        <button type="submit" class="bg-blue-600 text-white font-semibold px-6 py-3 rounded-md hover:bg-blue-700 transition">Publier</button>
       </form>
     </section>
 
-    <!-- Liste des offres -->
-    <section class="mb-24 max-w-5xl mx-auto">
+    <!-- Offres disponibles (exemple) -->
+    <section class="max-w-4xl mx-auto bg-white rounded-lg shadow p-8 mb-12">
       <h2 class="text-3xl font-semibold text-blue-700 mb-6 border-b-4 border-blue-500 inline-block pb-2">Offres disponibles</h2>
-      <div id="offersList" class="space-y-6"></div>
+      <ul class="space-y-6 text-gray-700">
+        <li class="border border-gray-300 rounded-md p-4 hover:shadow-lg transition">
+          <h3 class="text-xl font-bold">Entreprise Alpha</h3>
+          <p class="mb-1">Description : Vente fonds de commerce de boutique de vêtements.</p>
+          <p class="mb-1">Contact : contact@alpha.com</p>
+          <p class="mb-1">Localisation : Paris, France</p>
+          <p class="font-semibold">Prix : 50 000 €</p>
+        </li>
+        <li class="border border-gray-300 rounded-md p-4 hover:shadow-lg transition">
+          <h3 class="text-xl font-bold">Entreprise Beta</h3>
+          <p class="mb-1">Description : Cession d’un restaurant avec matériel inclus.</p>
+          <p class="mb-1">Contact : beta.contact@mail.com</p>
+          <p class="mb-1">Localisation : Lyon, France</p>
+          <p class="font-semibold">Prix : 120 000 €</p>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Section À propos + Contact -->
+    <section id="about-contact" class="max-w-4xl mx-auto bg-white rounded-lg shadow p-8 my-12">
+      <h2 class="text-3xl font-semibold text-blue-700 mb-6 border-b-4 border-blue-500 inline-block pb-2">À propos de O'PP MANAGER</h2>
+      <p class="text-gray-700 text-lg leading-relaxed mb-6">
+        O'PP MANAGER est une plateforme innovante conçue pour faciliter la gestion et la publication d'offres commerciales.  
+        Notre mission est d'accompagner les entrepreneurs et les petites entreprises dans le développement de leur activité grâce à une interface simple, moderne et efficace.
+      </p>
+
+      <h3 class="text-2xl font-semibold text-blue-700 mb-4">Contactez-nous</h3>
+      <ul class="space-y-3 text-gray-700">
+        <li><strong>Email :</strong> <a href="mailto:contact@oppmanager.com" class="text-blue-600 hover:underline">contact@oppmanager.com</a></li>
+        <li><strong>Téléphone :</strong> <a href="tel:+33123456789" class="text-blue-600 hover:underline">+33 1 23 45 67 89</a></li>
+        <li><strong>Adresse :</strong> 123 Rue de l’Innovation, 75000 Paris, France</li>
+      </ul>
     </section>
 
   </main>
@@ -90,57 +111,8 @@
     &copy; 2025 O'PP MANAGER — Tous droits réservés
   </footer>
 
-  <script>
-    const form = document.getElementById('offerForm');
-    const offersList = document.getElementById('offersList');
-
-    const loadOffers = () => {
-      const offers = JSON.parse(localStorage.getItem('offers') || '[]');
-      offersList.innerHTML = offers.length === 0
-        ? '<p class="text-gray-500 italic">Aucune offre disponible pour le moment.</p>'
-        : '';
-      offers.forEach((offer, index) => {
-        offersList.innerHTML += `
-          <article class="p-6 bg-white rounded-lg shadow hover:shadow-lg transition">
-            <h3 class="text-xl font-semibold text-blue-700 mb-2">${offer.name}</h3>
-            <p class="text-gray-700 mb-1"><span class="font-semibold">Description :</span> ${offer.description}</p>
-            <p class="text-gray-700 mb-1"><span class="font-semibold">Contact :</span> ${offer.contact}</p>
-            <p class="text-gray-700 mb-1"><span class="font-semibold">Localisation :</span> ${offer.location}</p>
-            <p class="text-gray-700 mb-3"><span class="font-semibold">Prix :</span> ${offer.price} €</p>
-            <button onclick="deleteOffer(${index})" class="text-white bg-red-600 hover:bg-red-700 px-4 py-2 rounded-md font-semibold transition">Supprimer</button>
-          </article>
-        `;
-      });
-    };
-
-    function deleteOffer(index) {
-      const offers = JSON.parse(localStorage.getItem('offers') || '[]');
-      offers.splice(index, 1);
-      localStorage.setItem('offers', JSON.stringify(offers));
-      loadOffers();
-    }
-
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const newOffer = {
-        name: document.getElementById('name').value,
-        description: document.getElementById('description').value,
-        contact: document.getElementById('contact').value,
-        location: document.getElementById('location').value,
-        price: document.getElementById('price').value
-      };
-      const offers = JSON.parse(localStorage.getItem('offers') || '[]');
-      offers.push(newOffer);
-      localStorage.setItem('offers', JSON.stringify(offers));
-      form.reset();
-      loadOffers();
-      // Scroll to offers list
-      offersList.scrollIntoView({behavior: 'smooth'});
-    });
-
-    window.onload = loadOffers;
-  </script>
-
 </body>
 </html>
+
+
 
