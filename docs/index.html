@@ -1,227 +1,138 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>O'PP MANAGER - Vente & Services</title>
-
-<!-- Google Fonts Poppins -->
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
-
-<style>
-  :root {
-    --beige-light: #F7F1E1;
-    --beige-medium: #D2B48C;
-    --beige-dark: #A67C52;
-    --text-color: #4A3C2F;
-    --background-light: var(--beige-light);
-    --background-dark: #2C2C2C;
-    --text-light: #F7F1E1;
-  }
-
-  /* Mode sombre */
-  body.dark {
-    background-color: var(--background-dark);
-    color: var(--text-light);
-  }
-
-  body {
-    margin: 0;
-    font-family: 'Poppins', Arial, sans-serif;
-    background-color: var(--background-light);
-    color: var(--text-color);
-    line-height: 1.6;
-    transition: background-color 0.5s, color 0.5s;
-  }
-
-  header {
-    background: var(--beige-medium);
-    padding: 20px;
-    text-align: center;
-  }
-
-  header h1 {
-    margin: 0;
-    font-weight: 700;
-    font-size: 2.5rem;
-    color: var(--beige-light);
-    letter-spacing: 2px;
-  }
-
-  header p {
-    margin: 5px 0 0;
-    font-weight: 500;
-    color: var(--beige-light);
-    font-size: 1.1rem;
-  }
-
-  main {
-    max-width: 900px;
-    margin: 40px auto;
-    padding: 0 20px;
-  }
-
-  section {
-    margin-bottom: 50px;
-    opacity: 0;
-    transform: translateY(20px);
-    animation: fadeInUp 0.8s forwards;
-  }
-  section:nth-child(1) { animation-delay: 0.2s; }
-  section:nth-child(2) { animation-delay: 0.4s; }
-  section:nth-child(3) { animation-delay: 0.6s; }
-
-  h2 {
-    font-weight: 700;
-    color: var(--beige-dark);
-    margin-bottom: 15px;
-    border-bottom: 2px solid var(--beige-medium);
-    display: inline-block;
-    padding-bottom: 5px;
-  }
-
-  p {
-    font-weight: 400;
-    font-size: 1.1rem;
-  }
-
-  /* Formulaire */
-  form {
-    background: var(--beige-light);
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 8px rgba(210, 180, 140, 0.4);
-  }
-
-  label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: 600;
-  }
-
-  input, textarea {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid var(--beige-medium);
-    border-radius: 5px;
-    font-family: 'Poppins', sans-serif;
-    font-size: 1rem;
-    transition: border-color 0.3s;
-  }
-
-  input:focus, textarea:focus {
-    border-color: var(--beige-dark);
-    outline: none;
-  }
-
-  button {
-    background: var(--beige-dark);
-    color: var(--beige-light);
-    padding: 12px 20px;
-    border: none;
-    border-radius: 5px;
-    font-weight: 700;
-    cursor: pointer;
-    transition: background 0.3s;
-  }
-
-  button:hover {
-    background: var(--beige-medium);
-  }
-
-  /* Mode sombre formulaire */
-  body.dark form {
-    background: #444;
-    box-shadow: 0 0 8px rgba(120, 120, 120, 0.6);
-  }
-
-  body.dark input, body.dark textarea {
-    background: #555;
-    border-color: #777;
-    color: var(--text-light);
-  }
-
-  body.dark input:focus, body.dark textarea:focus {
-    border-color: #bbb;
-  }
-
-  /* Toggle mode sombre */
-  #toggleTheme {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    background: var(--beige-medium);
-    border: none;
-    padding: 10px 14px;
-    border-radius: 50%;
-    cursor: pointer;
-    font-weight: 700;
-    color: var(--beige-light);
-    box-shadow: 0 0 8px rgba(210, 180, 140, 0.6);
-    transition: background 0.3s;
-    z-index: 1000;
-  }
-
-  #toggleTheme:hover {
-    background: var(--beige-dark);
-  }
-
-  /* Animations fadeInUp */
-  @keyframes fadeInUp {
-    to {
-      opacity: 1;
-      transform: translateY(0);
+  <meta charset="UTF-8">
+  <title>O'PP MANAGER</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+      background-color: #f7f7f7;
     }
-  }
 
-</style>
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+    }
+
+    .form-container, .offers-container {
+      max-width: 800px;
+      margin: 30px auto;
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      margin-top: 20px;
+      background-color: #3498db;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .offer {
+      border-bottom: 1px solid #ddd;
+      padding: 10px 0;
+    }
+
+    .offer:last-child {
+      border-bottom: none;
+    }
+  </style>
 </head>
 <body>
 
-<button id="toggleTheme" aria-label="Changer thème clair/sombre">🌓</button>
-
-<header>
   <h1>O'PP MANAGER</h1>
-  <p>La plateforme tout-en-un : vente & prestations</p>
-  <p>Votre partenaire produits & services, en ligne</p>
-</header>
 
-<main>
-  <section id="services">
-    <h2>Nos Services</h2>
-    <p><strong>Télécommunication :</strong> Installation et raccordement fibre optique, solutions adaptées à votre domicile ou entreprise.</p>
-  </section>
+  <div class="form-container">
+    <h2>Publier une offre</h2>
+    <form id="offerForm">
+      <label>Nom de l'entreprise</label>
+      <input type="text" id="name" required>
 
-  <section id="vente">
-    <h2>Vente de matériel</h2>
-    <p>Proposez une large gamme de matériel télécom fiable, performant, et au meilleur prix.</p>
-  </section>
+      <label>Description</label>
+      <textarea id="description" required></textarea>
 
-  <section id="contact">
-    <h2>Contactez-nous</h2>
-    <form action="https://formspree.io/f/mlezqrqp" method="POST">
-      <label for="name">Nom complet</label>
-      <input type="text" id="name" name="name" placeholder="Votre nom" required />
+      <label>Contact</label>
+      <input type="text" id="contact" required>
 
-      <label for="email">Email</label>
-      <input type="email" id="email" name="_replyto" placeholder="Votre email" required />
+      <label>Localisation</label>
+      <input type="text" id="location" required>
 
-      <label for="message">Message</label>
-      <textarea id="message" name="message" rows="4" placeholder="Votre message" required></textarea>
+      <label>Prix (€)</label>
+      <input type="number" id="price" required>
 
-      <button type="submit">Envoyer</button>
+      <button type="submit">Publier l'offre</button>
     </form>
-  </section>
-</main>
+  </div>
 
-<script>
-  const toggleThemeBtn = document.getElementById('toggleTheme');
-  toggleThemeBtn.addEventListener('click', () => {
-    document.body.classList.toggle('dark');
-  });
-</script>
+  <div class="offers-container">
+    <h2>Offres disponibles</h2>
+    <div id="offersList"></div>
+  </div>
+
+  <script>
+    const form = document.getElementById('offerForm');
+    const offersList = document.getElementById('offersList');
+
+    // Charger les offres depuis le localStorage
+    const loadOffers = () => {
+      const offers = JSON.parse(localStorage.getItem('offers') || '[]');
+      offersList.innerHTML = '';
+      offers.forEach((offer, index) => {
+        offersList.innerHTML += `
+          <div class="offer">
+            <h3>${offer.name}</h3>
+            <p><strong>Description :</strong> ${offer.description}</p>
+            <p><strong>Contact :</strong> ${offer.contact}</p>
+            <p><strong>Localisation :</strong> ${offer.location}</p>
+            <p><strong>Prix :</strong> ${offer.price} €</p>
+          </div>
+        `;
+      });
+    };
+
+    // Soumission du formulaire
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const newOffer = {
+        name: document.getElementById('name').value,
+        description: document.getElementById('description').value,
+        contact: document.getElementById('contact').value,
+        location: document.getElementById('location').value,
+        price: document.getElementById('price').value
+      };
+
+      const offers = JSON.parse(localStorage.getItem('offers') || '[]');
+      offers.push(newOffer);
+      localStorage.setItem('offers', JSON.stringify(offers));
+      form.reset();
+      loadOffers();
+    });
+
+    // Initialiser les offres au chargement
+    window.onload = loadOffers;
+  </script>
 
 </body>
 </html>
+
 
