@@ -17,24 +17,9 @@
       top: 0; left: 0; width: 100%; z-index: 100;
       background: white;
       box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 2rem;
-    }
-    nav a {
-      margin-right: 1rem;
-      color: #374151;
-      text-decoration: none;
-      font-weight: 500;
-      position: relative;
-      z-index: 110;
-    }
-    nav a:last-child {
-      margin-right: 0;
     }
     main {
-      padding-top: 100px;
+      padding-top: 80px;
       max-width: 1200px;
       margin: auto;
       padding-left: 1rem;
@@ -47,138 +32,197 @@
       padding: 1.5rem 0;
       margin-top: 2rem;
     }
-
-    /* Mini panier bouton (icône) */
-    #panier-toggle {
+    /* Panier styles */
+    #cart-icon {
       position: fixed;
-      top: 1rem;
-      right: 1rem;
+      top: 16px;
+      right: 16px;
       background: #2563eb;
       color: white;
+      width: 44px;
+      height: 44px;
       border-radius: 50%;
-      width: 48px;
-      height: 48px;
       display: flex;
-      justify-content: center;
       align-items: center;
-      font-weight: bold;
+      justify-content: center;
       cursor: pointer;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-      z-index: 200;
-      user-select: none;
+      z-index: 110;
     }
-
-    /* Mini panier panel (caché par défaut) */
-    #mini-panier {
+    #cart-count {
+      position: absolute;
+      top: 6px;
+      right: 6px;
+      background: red;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      font-size: 12px;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+    }
+    #cart {
       position: fixed;
-      top: 60px;
-      right: 1rem;
-      background: white;
-      border: 1px solid #ddd;
-      border-radius: 0.5rem;
-      width: 300px;
+      top: 70px;
+      right: 16px;
+      width: 320px;
       max-height: 400px;
       overflow-y: auto;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+      background: white;
+      box-shadow: 0 0 10px rgba(0,0,0,0.15);
+      border-radius: 8px;
       padding: 1rem;
-      font-size: 0.9rem;
-      z-index: 190;
       display: none;
+      z-index: 110;
     }
-    #mini-panier.show {
-      display: block;
-    }
-    #mini-panier h3 {
-      margin-top: 0;
+    #cart h3 {
+      font-weight: 700;
       margin-bottom: 1rem;
+      font-size: 1.25rem;
       color: #2563eb;
     }
-    #mini-panier ul {
-      list-style: none;
-      padding-left: 0;
-      margin: 0 0 1rem 0;
-    }
-    #mini-panier li {
-      margin-bottom: 0.5rem;
+    #cart .cart-item {
       display: flex;
       justify-content: space-between;
-      align-items: center;
+      margin-bottom: 0.75rem;
+      border-bottom: 1px solid #e5e7eb;
+      padding-bottom: 0.5rem;
     }
-    #mini-panier button.remove-btn {
+    #cart .cart-item:last-child {
+      border-bottom: none;
+    }
+    #cart .cart-item button {
       background: transparent;
       border: none;
-      color: #ef4444;
-      font-weight: bold;
+      color: red;
       cursor: pointer;
-    }
-    #panier-total {
       font-weight: bold;
-      text-align: right;
-      margin-top: 1rem;
-      border-top: 1px solid #ddd;
-      padding-top: 0.5rem;
+    }
+    #cart .empty {
+      text-align: center;
+      color: #6b7280;
+      margin-top: 2rem;
+      font-style: italic;
     }
   </style>
 </head>
 <body>
 
 <header>
-  <a href="#home" style="font-weight: bold; font-size: 1.5rem; color: #2563eb; text-decoration: none; z-index: 110;">O'PP MANAGER</a>
-  <nav>
-    <a href="#home">Accueil</a>
-    <a href="#vente">Vente</a>
-    <a href="#about">À propos</a>
-    <a href="#contact">Contact</a>
-    <a href="#form-offer">Publier une offre</a>
-  </nav>
+  <div class="max-w-7xl mx-auto flex justify-between items-center px-4 py-4">
+    <a href="#home" class="text-2xl font-bold text-blue-600 no-underline">O'PP MANAGER</a>
+    <nav class="space-x-6 text-gray-700">
+      <a href="#home" class="hover:text-blue-600">Accueil</a>
+      <a href="#vente" class="hover:text-blue-600">Vente</a>
+      <a href="#about" class="hover:text-blue-600">À propos</a>
+      <a href="#contact" class="hover:text-blue-600">Contact</a>
+      <a href="#form-offer" class="hover:text-blue-600">Publier une offre</a>
+    </nav>
+  </div>
 </header>
 
-<!-- Bouton panier -->
-<div id="panier-toggle" aria-label="Afficher ou cacher le panier" role="button" tabindex="0">
+<!-- Panier icône -->
+<div id="cart-icon" title="Voir le panier" aria-label="Voir le panier" role="button" tabindex="0">
   🛒
+  <div id="cart-count" style="display:none;">0</div>
 </div>
 
-<!-- Mini panier (initialement caché) -->
-<div id="mini-panier" aria-live="polite" aria-label="Panier">
+<!-- Panier contenu -->
+<div id="cart" aria-live="polite" aria-atomic="true">
   <h3>Panier</h3>
-  <ul id="panier-items">
-    <li>Votre panier est vide</li>
-  </ul>
-  <div id="panier-total"></div>
+  <div id="cart-items"></div>
+  <p id="cart-total" class="font-bold mt-4"></p>
+  <button id="cart-clear" style="background:#2563eb; color:white; padding:0.5rem 1rem; border:none; border-radius:0.375rem; cursor:pointer; margin-top: 1rem;">Vider le panier</button>
 </div>
 
 <main>
-  <section id="home" style="margin-bottom: 3rem;">
-    <h1 style="font-size: 3rem; font-weight: bold; color: #2563eb; margin-bottom: 1rem;">Bienvenue chez O'PP MANAGER</h1>
-    <p style="font-size: 1.125rem; color: #4b5563;">Découvrez nos offres et nos articles à vendre.</p>
+
+  <section id="home" class="mb-12">
+    <h1 class="text-4xl font-bold text-blue-600 mb-4">Bienvenue chez O'PP MANAGER</h1>
+    <p class="text-lg text-gray-600">Découvrez nos offres et nos articles à vendre.</p>
   </section>
 
-  <section id="vente" style="margin-bottom: 3rem;">
-    <h2 style="font-size: 2.25rem; font-weight: bold; color: #2563eb; margin-bottom: 2rem;">Vente d'articles</h2>
-    <div style="display: flex; gap: 2rem; flex-wrap: wrap; justify-content: center;">
-      <div style="background: white; border-radius: 0.5rem; box-shadow: 0 1px 6px rgba(0,0,0,0.1); padding: 1rem; width: 250px; text-align: center;">
-        <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=200&q=80" alt="Sac à dos randonnée" style="border-radius: 0.375rem; margin-bottom: 1rem; max-width: 100%;" />
-        <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem;">Sac à dos randonnée</h3>
-        <p style="color: #6b7280; margin-bottom: 1rem;">Sac léger, imperméable, capacité 40L, idéal pour la randonnée.</p>
-        <p style="font-weight: bold; font-size: 1.125rem; margin-bottom: 1rem;">60 €</p>
-        <button class="btn-ajouter" style="background-color: #2563eb; color: white; padding: 0.5rem 1rem; border: none; border-radius: 0.375rem; cursor: pointer;">Ajouter au panier</button>
+  <section id="vente" class="mb-12">
+    <h2 class="text-3xl font-bold text-blue-600 mb-8">Vente d'articles</h2>
+    <div class="flex flex-wrap gap-8 justify-center">
+
+      <div class="bg-white rounded-lg shadow p-4 w-64 text-center">
+        <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=200&q=80" alt="Sac à dos randonnée" class="rounded-md mb-4 mx-auto max-w-full" />
+        <h3 class="text-xl font-semibold mb-2">Sac à dos randonnée</h3>
+        <p class="text-gray-500 mb-4">Sac léger, imperméable, capacité 40L, idéal pour la randonnée.</p>
+        <p class="font-bold text-lg mb-4">60 €</p>
+        <button class="add-to-cart bg-blue-600 text-white py-2 px-4 rounded cursor-pointer hover:bg-blue-700" data-name="Sac à dos randonnée" data-price="60">Ajouter au panier</button>
       </div>
-      <div style="background: white; border-radius: 0.5rem; box-shadow: 0 1px 6px rgba(0,0,0,0.1); padding: 1rem; width: 250px; text-align: center;">
-        <img src="https://images.unsplash.com/photo-1549924231-f129b911e442?auto=format&fit=crop&w=200&q=80" alt="Casque vélo" style="border-radius: 0.375rem; margin-bottom: 1rem; max-width: 100%;" />
-        <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem;">Casque vélo</h3>
-        <p style="color: #6b7280; margin-bottom: 1rem;">Casque léger avec bonne ventilation, sécurité optimale.</p>
-        <p style="font-weight: bold; font-size: 1.125rem; margin-bottom: 1rem;">45 €</p>
-        <button class="btn-ajouter" style="background-color: #2563eb; color: white; padding: 0.5rem 1rem; border: none; border-radius: 0.375rem; cursor: pointer;">Ajouter au panier</button>
+
+      <div class="bg-white rounded-lg shadow p-4 w-64 text-center">
+        <img src="https://images.unsplash.com/photo-1549924231-f129b911e442?auto=format&fit=crop&w=200&q=80" alt="Casque vélo" class="rounded-md mb-4 mx-auto max-w-full" />
+        <h3 class="text-xl font-semibold mb-2">Casque vélo</h3>
+        <p class="text-gray-500 mb-4">Casque léger avec bonne ventilation, sécurité optimale.</p>
+        <p class="font-bold text-lg mb-4">45 €</p>
+        <button class="add-to-cart bg-blue-600 text-white py-2 px-4 rounded cursor-pointer hover:bg-blue-700" data-name="Casque vélo" data-price="45">Ajouter au panier</button>
       </div>
-      <div style="background: white; border-radius: 0.5rem; box-shadow: 0 1px 6px rgba(0,0,0,0.1); padding: 1rem; width: 250px; text-align: center;">
-        <img src="https://images.unsplash.com/photo-1517433456452-f9633a875f6f?auto=format&fit=crop&w=200&q=80" alt="Montre connectée" style="border-radius: 0.375rem; margin-bottom: 1rem; max-width: 100%;" />
-        <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem;">Montre connectée</h3>
-        <p style="color: #6b7280; margin-bottom: 1rem;">Montre moderne avec suivi de santé et notifications.</p>
-        <p style="font-weight: bold; font-size: 1.125rem; margin-bottom: 1rem;">120 €</p>
-        <button class="btn-ajouter" style="background-color: #2563eb; color: white; padding: 0.5rem 1rem; border: none; border-radius: 0.375rem; cursor: pointer;">Ajouter au panier</button>
+
+      <div class="bg-white rounded-lg shadow p-4 w-64 text-center">
+        <img src="https://images.unsplash.com/photo-1517433456452-f9633a875f6f?auto=format&fit=crop&w=200&q=80" alt="Montre connectée" class="rounded-md mb-4 mx-auto max-w-full" />
+        <h3 class="text-xl font-semibold mb-2">Montre connectée</h3>
+        <p class="text-gray-500 mb-4">Montre moderne avec suivi de santé et notifications.</p>
+        <p class="font-bold text-lg mb-4">120 €</p>
+        <button class="add-to-cart bg-blue-600 text-white py-2 px-4 rounded cursor-pointer hover:bg-blue-700" data-name="Montre connectée" data-price="120">Ajouter au panier</button>
       </div>
+
     </div>
   </section>
+
+  <section id="about" class="mb-12">
+    <h2 class="text-3xl font-bold text-blue-600 mb-4">À propos</h2>
+    <p class="text-gray-600 mb-4">
+      O'PP MANAGER est une société spécialisée dans la vente et la gestion d'offres commerciales.
+    </p>
+    <p class="text-gray-600">
+      Contact : contact.opetitparis@gmail.com | +33 6 40 40 58 94 | 24 Avenue Aristide Briand, 38220 Vizille
+    </p>
+  </section>
+
+  <section id="contact" class="mb-12">
+    <h2 class="text-3xl font-bold text-blue-600 mb-4">Contact</h2>
+    <form class="max-w-lg bg-white p-6 rounded-lg shadow">
+      <label for="name" class="block font-semibold mb-2">Nom :</label>
+      <input id="name" name="name" type="text" required class="w-full p-2 mb-4 border border-gray-300 rounded" />
+
+      <label for="email" class="block font-semibold mb-2">Email :</label>
+      <input id="email" name="email" type="email" required class="w-full p-2 mb-4 border border-gray-300 rounded" />
+
+      <label for="message" class="block font-semibold mb-2">Message :</label>
+      <textarea id="message" name="message" rows="4" required class="w-full p-2 mb-4 border border-gray-300 rounded"></textarea>
+
+      <button type="submit" class="bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 cursor-pointer">Envoyer</button>
+    </form>
+  </section>
+
+  <section id="form-offer" class="mb-12">
+    <h2 class="text-3xl font-bold text-blue-600 mb-4">Publier une offre</h2>
+    <form class="max-w-lg bg-white p-6 rounded-lg shadow">
+      <label for="company" class="block font-semibold mb-2">Nom de l'entreprise :</label>
+      <input id="company" name="company" type="text" required class="w-full p-2 mb-4 border border-gray-300 rounded" />
+
+      <label for="description" class="block font-semibold mb-2">Descriptif :</label>
+      <textarea id="description" name="description" rows="3" required class="w-full p-2 mb-4 border border-gray-300 rounded"></textarea>
+
+      <label for="contact-offer" class="block font-semibold mb-2">Contact :</label>
+      <input id="contact-offer" name="contact-offer" type="text" required class="w-full p-2 mb-4 border border-gray-300 rounded" />
+
+      <label for="location" class="block font-semibold mb-2">Localisation :</label>
+      <input id="location" name="location" type="text" required class="w-full p-2 mb-4 border border-gray-300 rounded" />
+
+      <label for="price" class="block font-semibold mb-2">Prix :</label>
+      <input id="price" name="price" type="number" min="0" required class="w-full p-2 mb-4 border border-gray-300 rounded" />
+
+      <button type="submit" class="bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 cursor-pointer">Publier</button>
+    </form>
+  </section>
+
 </main>
 
 <footer>
@@ -186,109 +230,101 @@
 </footer>
 
 <script>
-  const panierKey = 'oppManagerPanier';
+  // Panier localStorage
+  const cartIcon = document.getElementById('cart-icon');
+  const cart = document.getElementById('cart');
+  const cartCount = document.getElementById('cart-count');
+  const cartItemsContainer = document.getElementById('cart-items');
+  const cartTotal = document.getElementById('cart-total');
+  const cartClearBtn = document.getElementById('cart-clear');
 
-  // Charger panier ou initialiser
-  function getPanier() {
-    const panierJSON = localStorage.getItem(panierKey);
-    return panierJSON ? JSON.parse(panierJSON) : [];
+  // Ouvrir/fermer panier
+  cartIcon.addEventListener('click', () => {
+    if (cart.style.display === 'block') {
+      cart.style.display = 'none';
+    } else {
+      cart.style.display = 'block';
+    }
+  });
+
+  // Fermeture au clic hors panier
+  document.addEventListener('click', (e) => {
+    if (!cart.contains(e.target) && !cartIcon.contains(e.target)) {
+      cart.style.display = 'none';
+    }
+  });
+
+  // Charger panier du localStorage ou vide
+  let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+
+  function saveCart() {
+    localStorage.setItem('cart', JSON.stringify(cartItems));
   }
 
-  function savePanier(panier) {
-    localStorage.setItem(panierKey, JSON.stringify(panier));
-  }
+  function updateCartUI() {
+    cartItemsContainer.innerHTML = '';
 
-  // Affiche le panier dans la mini zone
-  function afficherPanier() {
-    const panier = getPanier();
-    const ul = document.getElementById('panier-items');
-    ul.innerHTML = '';
-
-    if (panier.length === 0) {
-      ul.innerHTML = '<li>Votre panier est vide</li>';
-      document.getElementById('panier-total').textContent = '';
+    if (cartItems.length === 0) {
+      cartItemsContainer.innerHTML = '<p class="empty">Le panier est vide.</p>';
+      cartTotal.textContent = '';
+      cartCount.style.display = 'none';
       return;
     }
 
+    cartCount.style.display = 'flex';
+    cartCount.textContent = cartItems.length;
+
     let total = 0;
 
-    panier.forEach((item, index) => {
-      total += item.prix * item.quantite;
-      const li = document.createElement('li');
-      li.textContent = `${item.titre} x${item.quantite} - ${item.prix * item.quantite} € `;
+    cartItems.forEach((item, index) => {
+      total += item.price;
 
-      // Bouton supprimer
-      const btnSuppr = document.createElement('button');
-      btnSuppr.textContent = '×';
-      btnSuppr.classList.add('remove-btn');
-      btnSuppr.setAttribute('aria-label', `Supprimer ${item.titre} du panier`);
-      btnSuppr.onclick = () => {
-        retirerArticle(index);
-      };
+      const div = document.createElement('div');
+      div.className = 'cart-item';
 
-      li.appendChild(btnSuppr);
-      ul.appendChild(li);
+      div.innerHTML = `
+        <span>${item.name} - ${item.price} €</span>
+        <button aria-label="Supprimer ${item.name}" data-index="${index}">&times;</button>
+      `;
+
+      cartItemsContainer.appendChild(div);
     });
 
-    document.getElementById('panier-total').textContent = `Total : ${total.toFixed(2)} €`;
+    cartTotal.textContent = `Total : ${total} €`;
   }
 
-  // Ajout d’un article dans le panier
-  function ajouterAuPanier(article) {
-    const panier = getPanier();
-    const index = panier.findIndex(item => item.titre === article.titre);
-
-    if (index !== -1) {
-      panier[index].quantite++;
-    } else {
-      panier.push({...article, quantite: 1});
+  // Supprimer item
+  cartItemsContainer.addEventListener('click', (e) => {
+    if (e.target.tagName === 'BUTTON') {
+      const idx = e.target.getAttribute('data-index');
+      cartItems.splice(idx, 1);
+      saveCart();
+      updateCartUI();
     }
+  });
 
-    savePanier(panier);
-    afficherPanier();
-  }
+  // Vider panier
+  cartClearBtn.addEventListener('click', () => {
+    cartItems = [];
+    saveCart();
+    updateCartUI();
+  });
 
-  // Retirer article
-  function retirerArticle(index) {
-    const panier = getPanier();
-    panier.splice(index, 1);
-    savePanier(panier);
-    afficherPanier();
-  }
-
-  // Écouteurs sur les boutons ajouter
-  document.querySelectorAll('.btn-ajouter').forEach(button => {
+  // Ajouter au panier
+  document.querySelectorAll('.add-to-cart').forEach(button => {
     button.addEventListener('click', () => {
-      const card = button.parentElement;
-      const titre = card.querySelector('h3').textContent;
-      const prixText = card.querySelector('p[style*="font-weight: bold"]').textContent;
-      const prix = parseFloat(prixText.replace('€', '').trim());
-
-      ajouterAuPanier({titre, prix});
-
-      alert(`L'article "${titre}" a été ajouté au panier !`);
+      const name = button.getAttribute('data-name');
+      const price = parseFloat(button.getAttribute('data-price'));
+      cartItems.push({ name, price });
+      saveCart();
+      updateCartUI();
+      alert(`"${name}" ajouté au panier !`);
     });
   });
 
-  // Toggle affichage mini panier
-  const toggleBtn = document.getElementById('panier-toggle');
-  const miniPanier = document.getElementById('mini-panier');
-
-  toggleBtn.addEventListener('click', () => {
-    miniPanier.classList.toggle('show');
-  });
-  toggleBtn.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault();
-      miniPanier.classList.toggle('show');
-    }
-  });
-
-  // Initialiser affichage panier au chargement
-  afficherPanier();
+  // Initialiser l'affichage
+  updateCartUI();
 </script>
 
 </body>
 </html>
-
-
