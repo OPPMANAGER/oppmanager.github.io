@@ -2,235 +2,112 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>O'PP MANAGER</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     body {
       scroll-behavior: smooth;
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #f9fafb;
+      background: linear-gradient(to bottom right, #f0f4ff, #ffffff);
     }
-    header {
-      position: fixed;
-      top: 0; left: 0; width: 100%; z-index: 100;
-      background: white;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    .fade-in {
+      animation: fadeIn 1.5s ease-in;
     }
-    main {
-      padding-top: 80px;
-      max-width: 1200px;
-      margin: auto;
-      padding-left: 1rem;
-      padding-right: 1rem;
-    }
-    footer {
-      background-color: #1d4ed8;
-      color: white;
-      text-align: center;
-      padding: 1.5rem 0;
-      margin-top: 2rem;
-    }
-    /* Panier styles */
-    #cart-icon {
-      position: fixed;
-      top: 16px;
-      right: 16px;
-      background: #2563eb;
-      color: white;
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      z-index: 110;
-    }
-    #cart-count {
-      position: absolute;
-      top: 6px;
-      right: 6px;
-      background: red;
-      width: 16px;
-      height: 16px;
-      border-radius: 50%;
-      font-size: 12px;
-      color: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: bold;
-    }
-    #cart {
-      position: fixed;
-      top: 70px;
-      right: 16px;
-      width: 320px;
-      max-height: 400px;
-      overflow-y: auto;
-      background: white;
-      box-shadow: 0 0 10px rgba(0,0,0,0.15);
-      border-radius: 8px;
-      padding: 1rem;
-      display: none;
-      z-index: 110;
-    }
-    #cart h3 {
-      font-weight: 700;
-      margin-bottom: 1rem;
-      font-size: 1.25rem;
-      color: #2563eb;
-    }
-    #cart .cart-item {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 0.75rem;
-      border-bottom: 1px solid #e5e7eb;
-      padding-bottom: 0.5rem;
-    }
-    #cart .cart-item:last-child {
-      border-bottom: none;
-    }
-    #cart .cart-item button {
-      background: transparent;
-      border: none;
-      color: red;
-      cursor: pointer;
-      font-weight: bold;
-    }
-    #cart .empty {
-      text-align: center;
-      color: #6b7280;
-      margin-top: 2rem;
-      font-style: italic;
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
-<body>
+<body class="font-sans text-gray-800">
 
-<header>
-  <div class="max-w-7xl mx-auto flex justify-between items-center px-4 py-4">
-    <a href="#home" class="text-2xl font-bold text-blue-600 no-underline">O'PP MANAGER</a>
-    <nav class="space-x-6 text-gray-700">
+<!-- En-tête -->
+<header class="bg-white shadow fixed top-0 w-full z-50">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+    <a href="#home" class="text-2xl font-bold text-blue-700">O'PP MANAGER</a>
+    <nav class="space-x-4 text-sm sm:text-base">
       <a href="#home" class="hover:text-blue-600">Accueil</a>
       <a href="#vente" class="hover:text-blue-600">Vente</a>
       <a href="#about" class="hover:text-blue-600">À propos</a>
       <a href="#contact" class="hover:text-blue-600">Contact</a>
-      <a href="#form-offer" class="hover:text-blue-600">Publier une offre</a>
+      <a href="#form-offer" class="hover:text-blue-600">Publier</a>
     </nav>
   </div>
 </header>
 
-<!-- Panier icône -->
-<div id="cart-icon" title="Voir le panier" aria-label="Voir le panier" role="button" tabindex="0">
-  🛒
-  <div id="cart-count" style="display:none;">0</div>
+<!-- Panier -->
+<div id="cart-icon" class="fixed top-20 right-5 bg-blue-600 text-white w-12 h-12 flex items-center justify-center rounded-full shadow-lg cursor-pointer">
+  🛒<div id="cart-count" class="absolute top-0 right-0 bg-red-500 text-xs w-5 h-5 rounded-full flex items-center justify-center hidden">0</div>
 </div>
 
-<!-- Panier contenu -->
-<div id="cart" aria-live="polite" aria-atomic="true">
-  <h3>Panier</h3>
+<div id="cart" class="hidden fixed top-28 right-5 bg-white w-80 max-h-96 overflow-y-auto rounded-lg shadow-lg p-4 z-50">
+  <h3 class="text-lg font-bold text-blue-700 mb-2">Votre panier</h3>
   <div id="cart-items"></div>
-  <p id="cart-total" class="font-bold mt-4"></p>
-  <button id="cart-clear" style="background:#2563eb; color:white; padding:0.5rem 1rem; border:none; border-radius:0.375rem; cursor:pointer; margin-top: 1rem;">Vider le panier</button>
+  <p id="cart-total" class="mt-4 font-semibold"></p>
+  <button id="cart-clear" class="mt-4 w-full bg-red-500 text-white py-2 rounded hover:bg-red-600">Vider le panier</button>
 </div>
 
-<main>
-
-  <section id="home" class="mb-12">
-    <h1 class="text-4xl font-bold text-blue-600 mb-4">Bienvenue chez O'PP MANAGER</h1>
-    <p class="text-lg text-gray-600">Découvrez nos offres et nos articles à vendre.</p>
+<main class="pt-28 px-4 max-w-6xl mx-auto">
+  <!-- Accueil -->
+  <section id="home" class="fade-in text-center mb-16">
+    <h1 class="text-4xl sm:text-5xl font-bold text-blue-700 mb-4">Bienvenue sur O'PP MANAGER</h1>
+    <p class="text-lg sm:text-xl text-gray-600">Plateforme unique de <strong>revente</strong>, <strong>services</strong> & <strong>apport d'affaires</strong> — tout en un clic.</p>
   </section>
 
-  <section id="vente" class="mb-12">
-    <h2 class="text-3xl font-bold text-blue-600 mb-8">Vente d'articles</h2>
-    <div class="flex flex-wrap gap-8 justify-center">
-
-      <div class="bg-white rounded-lg shadow p-4 w-64 text-center">
-        <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=200&q=80" alt="Sac à dos randonnée" class="rounded-md mb-4 mx-auto max-w-full" />
-        <h3 class="text-xl font-semibold mb-2">Sac à dos randonnée</h3>
-        <p class="text-gray-500 mb-4">Sac léger, imperméable, capacité 40L, idéal pour la randonnée.</p>
-        <p class="font-bold text-lg mb-4">60 €</p>
-        <button class="add-to-cart bg-blue-600 text-white py-2 px-4 rounded cursor-pointer hover:bg-blue-700" data-name="Sac à dos randonnée" data-price="60">Ajouter au panier</button>
+  <!-- Vente -->
+  <section id="vente" class="mb-16">
+    <h2 class="text-3xl font-bold text-blue-700 text-center mb-10">Nos Articles</h2>
+    <div class="grid gap-8 sm:grid-cols-2 md:grid-cols-3">
+      <!-- Exemples d'articles -->
+      <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition p-4 text-center">
+        <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80" class="rounded-lg mb-4 mx-auto" alt="Sac à dos" />
+        <h3 class="font-semibold text-lg">Sac à dos randonnée</h3>
+        <p class="text-gray-500 text-sm">Imperméable, 40L, ultra léger</p>
+        <p class="font-bold mt-2">60 €</p>
+        <button class="add-to-cart mt-3 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700" data-name="Sac à dos randonnée" data-price="60">Ajouter</button>
       </div>
-
-      <div class="bg-white rounded-lg shadow p-4 w-64 text-center">
-        <img src="https://images.unsplash.com/photo-1549924231-f129b911e442?auto=format&fit=crop&w=200&q=80" alt="Casque vélo" class="rounded-md mb-4 mx-auto max-w-full" />
-        <h3 class="text-xl font-semibold mb-2">Casque vélo</h3>
-        <p class="text-gray-500 mb-4">Casque léger avec bonne ventilation, sécurité optimale.</p>
-        <p class="font-bold text-lg mb-4">45 €</p>
-        <button class="add-to-cart bg-blue-600 text-white py-2 px-4 rounded cursor-pointer hover:bg-blue-700" data-name="Casque vélo" data-price="45">Ajouter au panier</button>
-      </div>
-
-      <div class="bg-white rounded-lg shadow p-4 w-64 text-center">
-        <img src="https://images.unsplash.com/photo-1517433456452-f9633a875f6f?auto=format&fit=crop&w=200&q=80" alt="Montre connectée" class="rounded-md mb-4 mx-auto max-w-full" />
-        <h3 class="text-xl font-semibold mb-2">Montre connectée</h3>
-        <p class="text-gray-500 mb-4">Montre moderne avec suivi de santé et notifications.</p>
-        <p class="font-bold text-lg mb-4">120 €</p>
-        <button class="add-to-cart bg-blue-600 text-white py-2 px-4 rounded cursor-pointer hover:bg-blue-700" data-name="Montre connectée" data-price="120">Ajouter au panier</button>
-      </div>
-
+      <!-- ... autres articles similaires -->
     </div>
   </section>
 
-  <section id="about" class="mb-12">
-    <h2 class="text-3xl font-bold text-blue-600 mb-4">À propos</h2>
-    <p class="text-gray-600 mb-4">
-      O'PP MANAGER est une société spécialisée dans la vente et la gestion d'offres commerciales.
-    </p>
-    <p class="text-gray-600">
-      Contact : contact.opetitparis@gmail.com | +33 6 40 40 58 94 | 24 Avenue Aristide Briand, 38220 Vizille
-    </p>
+  <!-- À propos -->
+  <section id="about" class="mb-16 text-center fade-in">
+    <h2 class="text-3xl font-bold text-blue-700 mb-4">À propos de nous</h2>
+    <p class="text-gray-600 max-w-2xl mx-auto">O'PP MANAGER centralise la revente, les prestations de services et l'apport d'affaires sur une interface simple. Notre mission : faciliter la mise en relation et la transaction en ligne.</p>
   </section>
 
-  <section id="contact" class="mb-12">
-    <h2 class="text-3xl font-bold text-blue-600 mb-4">Contact</h2>
-    <form class="max-w-lg bg-white p-6 rounded-lg shadow">
-      <label for="name" class="block font-semibold mb-2">Nom :</label>
-      <input id="name" name="name" type="text" required class="w-full p-2 mb-4 border border-gray-300 rounded" />
-
-      <label for="email" class="block font-semibold mb-2">Email :</label>
-      <input id="email" name="email" type="email" required class="w-full p-2 mb-4 border border-gray-300 rounded" />
-
-      <label for="message" class="block font-semibold mb-2">Message :</label>
-      <textarea id="message" name="message" rows="4" required class="w-full p-2 mb-4 border border-gray-300 rounded"></textarea>
-
-      <button type="submit" class="bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 cursor-pointer">Envoyer</button>
+  <!-- Contact -->
+  <section id="contact" class="mb-16">
+    <h2 class="text-3xl font-bold text-blue-700 text-center mb-6">Contactez-nous</h2>
+    <form class="bg-white p-6 rounded-xl shadow-md max-w-xl mx-auto space-y-4">
+      <input type="text" placeholder="Votre nom" required class="w-full border border-gray-300 rounded p-2" />
+      <input type="email" placeholder="Votre email" required class="w-full border border-gray-300 rounded p-2" />
+      <textarea placeholder="Votre message" rows="4" required class="w-full border border-gray-300 rounded p-2"></textarea>
+      <button type="submit" class="bg-blue-600 text-white py-2 px-6 rounded hover:bg-blue-700">Envoyer</button>
     </form>
   </section>
 
-  <section id="form-offer" class="mb-12">
-    <h2 class="text-3xl font-bold text-blue-600 mb-4">Publier une offre</h2>
-    <form class="max-w-lg bg-white p-6 rounded-lg shadow">
-      <label for="company" class="block font-semibold mb-2">Nom de l'entreprise :</label>
-      <input id="company" name="company" type="text" required class="w-full p-2 mb-4 border border-gray-300 rounded" />
-
-      <label for="description" class="block font-semibold mb-2">Descriptif :</label>
-      <textarea id="description" name="description" rows="3" required class="w-full p-2 mb-4 border border-gray-300 rounded"></textarea>
-
-      <label for="contact-offer" class="block font-semibold mb-2">Contact :</label>
-      <input id="contact-offer" name="contact-offer" type="text" required class="w-full p-2 mb-4 border border-gray-300 rounded" />
-
-      <label for="location" class="block font-semibold mb-2">Localisation :</label>
-      <input id="location" name="location" type="text" required class="w-full p-2 mb-4 border border-gray-300 rounded" />
-
-      <label for="price" class="block font-semibold mb-2">Prix :</label>
-      <input id="price" name="price" type="number" min="0" required class="w-full p-2 mb-4 border border-gray-300 rounded" />
-
-      <button type="submit" class="bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 cursor-pointer">Publier</button>
+  <!-- Publier une offre -->
+  <section id="form-offer" class="mb-20">
+    <h2 class="text-3xl font-bold text-blue-700 text-center mb-6">Publier une offre</h2>
+    <form class="bg-white p-6 rounded-xl shadow-md max-w-xl mx-auto space-y-4">
+      <input type="text" placeholder="Nom de l'entreprise" required class="w-full border border-gray-300 rounded p-2" />
+      <textarea placeholder="Descriptif de l'offre" required class="w-full border border-gray-300 rounded p-2"></textarea>
+      <input type="text" placeholder="Contact" required class="w-full border border-gray-300 rounded p-2" />
+      <input type="text" placeholder="Localisation" required class="w-full border border-gray-300 rounded p-2" />
+      <input type="number" placeholder="Prix (€)" required class="w-full border border-gray-300 rounded p-2" />
+      <button type="submit" class="bg-green-600 text-white py-2 px-6 rounded hover:bg-green-700">Publier</button>
     </form>
   </section>
-
 </main>
 
-<footer>
+<!-- Pied de page -->
+<footer class="bg-blue-700 text-white text-center py-4">
   © 2025 O'PP MANAGER — Tous droits réservés
 </footer>
 
+<!-- JS Panier -->
 <script>
-  // Panier localStorage
   const cartIcon = document.getElementById('cart-icon');
   const cart = document.getElementById('cart');
   const cartCount = document.getElementById('cart-count');
@@ -238,91 +115,65 @@
   const cartTotal = document.getElementById('cart-total');
   const cartClearBtn = document.getElementById('cart-clear');
 
-  // Ouvrir/fermer panier
-  cartIcon.addEventListener('click', () => {
-    if (cart.style.display === 'block') {
-      cart.style.display = 'none';
-    } else {
-      cart.style.display = 'block';
-    }
-  });
-
-  // Fermeture au clic hors panier
-  document.addEventListener('click', (e) => {
-    if (!cart.contains(e.target) && !cartIcon.contains(e.target)) {
-      cart.style.display = 'none';
-    }
-  });
-
-  // Charger panier du localStorage ou vide
   let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
 
-  function saveCart() {
-    localStorage.setItem('cart', JSON.stringify(cartItems));
-  }
+  function saveCart() { localStorage.setItem('cart', JSON.stringify(cartItems)); }
 
   function updateCartUI() {
     cartItemsContainer.innerHTML = '';
-
     if (cartItems.length === 0) {
-      cartItemsContainer.innerHTML = '<p class="empty">Le panier est vide.</p>';
+      cartItemsContainer.innerHTML = '<p class="text-gray-500 text-sm">Panier vide.</p>';
       cartTotal.textContent = '';
       cartCount.style.display = 'none';
       return;
     }
-
     cartCount.style.display = 'flex';
     cartCount.textContent = cartItems.length;
-
     let total = 0;
-
     cartItems.forEach((item, index) => {
       total += item.price;
-
       const div = document.createElement('div');
-      div.className = 'cart-item';
-
-      div.innerHTML = `
-        <span>${item.name} - ${item.price} €</span>
-        <button aria-label="Supprimer ${item.name}" data-index="${index}">&times;</button>
-      `;
-
+      div.className = 'flex justify-between border-b py-2';
+      div.innerHTML = `<span>${item.name} - ${item.price} €</span><button data-index="${index}" class="text-red-600 font-bold">×</button>`;
       cartItemsContainer.appendChild(div);
     });
-
     cartTotal.textContent = `Total : ${total} €`;
   }
 
-  // Supprimer item
-  cartItemsContainer.addEventListener('click', (e) => {
+  document.addEventListener('click', e => {
+    if (!cart.contains(e.target) && !cartIcon.contains(e.target)) cart.style.display = 'none';
+  });
+
+  cartIcon.addEventListener('click', () => {
+    cart.style.display = cart.style.display === 'block' ? 'none' : 'block';
+  });
+
+  cartItemsContainer.addEventListener('click', e => {
     if (e.target.tagName === 'BUTTON') {
-      const idx = e.target.getAttribute('data-index');
+      const idx = e.target.dataset.index;
       cartItems.splice(idx, 1);
       saveCart();
       updateCartUI();
     }
   });
 
-  // Vider panier
   cartClearBtn.addEventListener('click', () => {
     cartItems = [];
     saveCart();
     updateCartUI();
   });
 
-  // Ajouter au panier
   document.querySelectorAll('.add-to-cart').forEach(button => {
     button.addEventListener('click', () => {
-      const name = button.getAttribute('data-name');
-      const price = parseFloat(button.getAttribute('data-price'));
+      const name = button.dataset.name;
+      const price = parseFloat(button.dataset.price);
       cartItems.push({ name, price });
       saveCart();
       updateCartUI();
-      alert(`"${name}" ajouté au panier !`);
+      alert(`${name} ajouté au panier !`);
     });
   });
 
-  // Initialiser l'affichage
   updateCartUI();
 </script>
 
