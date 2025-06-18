@@ -27,7 +27,7 @@
     <a href="#home" class="text-2xl font-bold text-green-700">O'PP MANAGER</a>
     <nav class="space-x-4 text-sm sm:text-base">
       <a href="#home" class="hover:text-green-600">Accueil</a>
-      <a href="#vente" class="hover:text-green-600">Vente</a>
+      <a href="#vente" class="hover:text-green-600">Nos annonces et nos offres</a>
       <a href="#opportunites" class="hover:text-green-600">Opportunités</a>
       <a href="#about" class="hover:text-green-600">À propos</a>
       <a href="#contact" class="hover:text-green-600">Contact</a>
@@ -57,118 +57,76 @@
 
   <!-- Vente -->
   <section id="vente" class="mb-16">
-    <h2 class="text-3xl font-bold text-green-700 text-center mb-10">Nos annonces et nos offres</h2>
-    <div class="grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-
-      <!-- Fonds de commerce -->
-      <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition p-4 text-center">
-        <img src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092?auto=format&fit=crop&w=400&q=80" class="rounded-lg mb-4 mx-auto" alt="Fonds de commerce" />
-        <h3 class="font-semibold text-lg">Fonds de commerce Snack / Restauration rapide</h3>
-        <p class="text-gray-500 text-sm">Vizille - Place du Château</p>
-        <p class="font-bold mt-2">Prix : À débattre</p>
-        <button class="add-to-cart mt-3 bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700" data-name="Fonds de commerce Snack" data-price="0">Ajouter</button>
+    <h2 class="text-3xl font-bold text-green-700 text-center mb-6">Nos annonces et nos offres</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="bg-white p-4 rounded-lg shadow-md">
+        <img src="https://images.unsplash.com/photo-1592878849120-88a8b84a3f92" alt="Réseaux télécom" class="rounded mb-3 h-48 w-full object-cover">
+        <h3 class="text-xl font-semibold mb-1">Détection de réseaux télécom</h3>
+        <p class="text-gray-700 mb-2">Service d'installation et réparation fibre optique pour pros & particuliers.</p>
+        <button class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Ajouter au panier</button>
       </div>
-
-      <!-- Villa -->
-      <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition p-4 text-center">
-        <img src="https://cdn.pixabay.com/photo/2021/08/28/21/16/house-6581486_960_720.png" class="rounded-lg mb-4 mx-auto" alt="Villa animée" />
-        <h3 class="font-semibold text-lg">Villa avec piscine à louer</h3>
-        <p class="text-gray-500 text-sm">Saint Martin d’Uriage (38)</p>
-        <p class="font-bold mt-2">Tarif sur demande</p>
-        <button class="add-to-cart mt-3 bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700" data-name="Villa avec piscine" data-price="0">Ajouter</button>
+      <div class="bg-white p-4 rounded-lg shadow-md">
+        <img src="https://images.unsplash.com/photo-1581090700227-1e8d68e362d2" alt="Location nacelle" class="rounded mb-3 h-48 w-full object-cover">
+        <h3 class="text-xl font-semibold mb-1">Location de nacelle</h3>
+        <p class="text-gray-700 mb-2">Location de nacelle avec chauffeur pour vos chantiers ou interventions.</p>
+        <button class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Ajouter au panier</button>
       </div>
-
-      <!-- Détection de réseaux -->
-      <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition p-4 text-center">
-        <img src="https://cdn.pixabay.com/photo/2017/06/08/08/59/network-2389231_960_720.jpg" class="rounded-lg mb-4 mx-auto" alt="Détection réseau" />
-        <h3 class="font-semibold text-lg">Détection de réseaux télécom</h3>
-        <p class="text-gray-500 text-sm">Installation & Réparation Fibre Optique</p>
-        <p class="font-bold mt-2">Sur devis</p>
-        <button class="add-to-cart mt-3 bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700" data-name="Détection télécom" data-price="0">Ajouter</button>
+      <div class="bg-white p-4 rounded-lg shadow-md">
+        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c" alt="Location villa" class="rounded mb-3 h-48 w-full object-cover">
+        <h3 class="text-xl font-semibold mb-1">Location de villa</h3>
+        <p class="text-gray-700 mb-2">Villa spacieuse à louer pour vos séjours de détente ou événements professionnels. Lieu calme et tout équipé.</p>
+        <button class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Ajouter au panier</button>
       </div>
-
-      <!-- Nacelle avec chauffeur -->
-      <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition p-4 text-center">
-        <img src="https://cdn.pixabay.com/photo/2021/07/13/08/37/aerial-work-platform-6461531_960_720.jpg" class="rounded-lg mb-4 mx-auto" alt="Location nacelle" />
-        <h3 class="font-semibold text-lg">Location de nacelle avec chauffeur</h3>
-        <p class="text-gray-500 text-sm">Service ponctuel ou régulier</p>
-        <p class="font-bold mt-2">Sur devis</p>
-        <button class="add-to-cart mt-3 bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700" data-name="Location nacelle" data-price="0">Ajouter</button>
-      </div>
-
-      <!-- Électroménager -->
-      <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition p-4 text-center">
-        <img src="https://cdn.pixabay.com/photo/2016/04/20/18/57/washing-machine-1344187_960_720.jpg" class="rounded-lg mb-4 mx-auto" alt="Electroménager" />
-        <h3 class="font-semibold text-lg">Vente électroménager neuf & reconditionné</h3>
-        <p class="text-gray-500 text-sm">Grenoble et alentours - Livraison possible</p>
-        <p class="font-bold mt-2">Prix variable</p>
-        <button class="add-to-cart mt-3 bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700" data-name="Électroménager" data-price="0">Ajouter</button>
-      </div>
-
     </div>
   </section>
 
-  <!-- Opportunités (nettoyée) -->
+  <!-- Opportunités -->
   <section id="opportunites" class="mb-16">
-    <h2 class="text-3xl font-bold text-green-700 text-center mb-10">Opportunités à Saisir</h2>
-    <div class="grid gap-8 sm:grid-cols-1 md:grid-cols-2">
-      <!-- Seul élément conservé -->
-      <div class="bg-white p-6 rounded-xl shadow-lg">
-        <h3 class="text-xl font-bold text-green-800 mb-2">Fonds de commerce Snack / Restauration rapide</h3>
-        <p class="text-gray-700 text-sm">📍 Vizille - Place du Château<br />💰 Prix : À débattre<br />📄 Bail : 3/6/9 renouvelable<br />📦 Vente du fonds uniquement</p>
-        <ul class="list-disc list-inside text-gray-600 mt-2 text-sm">
-          <li>Snack/sandwicherie/tacos/burgers</li>
-          <li>Matériel complet inclus</li>
-          <li>Fort potentiel développement</li>
-          <li>Faible loyer</li>
-        </ul>
-        <p class="mt-3 text-sm">📞 Contact rapide pour plus d’infos ou visite.</p>
-      </div>
+    <h2 class="text-3xl font-bold text-green-700 text-center mb-6">Opportunité à saisir</h2>
+    <div class="bg-white p-6 rounded-lg shadow-md max-w-xl mx-auto">
+      <img src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092" alt="Fonds de commerce" class="rounded mb-4 h-64 w-full object-cover">
+      <h3 class="text-2xl font-semibold mb-2">Fonds de commerce à vendre</h3>
+      <p class="text-gray-700 mb-2">Snack / Restauration rapide situé sur la place du Château à Vizille. Très bon emplacement, matériel en bon état, clientèle fidèle, possibilité d'aménagement.</p>
+      <p class="font-semibold mb-2">Prix : À débattre</p>
+      <button class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Ajouter au panier</button>
     </div>
   </section>
 
-  <!-- Reste inchangé (à propos, contact, publier offre, footer) -->
-  <!-- (à compléter selon besoin) -->
+  <!-- À propos -->
+  <section id="about" class="mb-16">
+    <h2 class="text-3xl font-bold text-green-700 text-center mb-6">À propos de nous</h2>
+    <div class="flex flex-col md:flex-row items-center justify-center gap-8">
+      <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7" alt="Équipe professionnelle" class="rounded-xl w-full md:w-1/2 shadow-md" />
+      <p class="text-lg text-gray-700 leading-relaxed max-w-3xl text-center md:text-left">
+        O'PP MANAGER est une plateforme dynamique qui vise à connecter les professionnels, particuliers et entrepreneurs à travers des services variés, des opportunités commerciales et des produits sélectionnés avec soin. Forts de notre expérience dans la gestion de projets, la vente et les services aux entreprises, nous vous offrons un guichet unique pour acheter, vendre, louer ou promouvoir vos offres.
+        <br/><br/>Notre objectif est de faciliter les échanges et booster votre activité grâce à une interface intuitive, un accompagnement personnalisé, et des outils adaptés à vos besoins. Que vous soyez à la recherche d’un bien, d’un service spécifique, ou que vous souhaitiez publier votre propre annonce, O'PP MANAGER est l’allié qu’il vous faut.
+        <br/><br/>Transparence, efficacité et proximité sont les maîtres-mots de notre engagement au quotidien. Rejoignez-nous et transformez vos opportunités en réussites !
+      </p>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="mb-16">
+    <h2 class="text-3xl font-bold text-green-700 text-center mb-6">Contact</h2>
+    <form class="max-w-xl mx-auto space-y-4">
+      <input type="text" placeholder="Nom" class="w-full border border-gray-300 p-2 rounded" />
+      <input type="email" placeholder="Email" class="w-full border border-gray-300 p-2 rounded" />
+      <textarea placeholder="Message" rows="4" class="w-full border border-gray-300 p-2 rounded"></textarea>
+      <button type="submit" class="w-full bg-green-600 text-white py-2 rounded hover:bg-green-700">Envoyer</button>
+    </form>
+  </section>
+
+  <!-- Formulaire de publication -->
+  <section id="form-offer" class="mb-16">
+    <h2 class="text-3xl font-bold text-green-700 text-center mb-6">Publier une offre</h2>
+    <form class="max-w-xl mx-auto space-y-4">
+      <input type="text" placeholder="Titre de l'annonce" class="w-full border border-gray-300 p-2 rounded" />
+      <textarea placeholder="Description" rows="4" class="w-full border border-gray-300 p-2 rounded"></textarea>
+      <input type="text" placeholder="Prix ou conditions" class="w-full border border-gray-300 p-2 rounded" />
+      <button type="submit" class="w-full bg-green-600 text-white py-2 rounded hover:bg-green-700">Publier</button>
+    </form>
+  </section>
 </main>
-
-<!-- JS Panier (inchangé) -->
-<script>
-// Fonctionnalité simple du panier
-const cartIcon = document.getElementById('cart-icon');
-const cart = document.getElementById('cart');
-const cartItems = document.getElementById('cart-items');
-const cartTotal = document.getElementById('cart-total');
-const cartCount = document.getElementById('cart-count');
-const cartClear = document.getElementById('cart-clear');
-
-let items = [];
-
-cartIcon.onclick = () => {
-  cart.classList.toggle('hidden');
-};
-
-cartClear.onclick = () => {
-  items = [];
-  updateCart();
-};
-
-document.querySelectorAll('.add-to-cart').forEach(button => {
-  button.onclick = () => {
-    const name = button.getAttribute('data-name');
-    const price = parseFloat(button.getAttribute('data-price'));
-    items.push({ name, price });
-    updateCart();
-  };
-});
-
-function updateCart() {
-  cartItems.innerHTML = items.map(i => `<div class="text-sm">${i.name} - ${i.price} €</div>`).join('');
-  const total = items.reduce((sum, i) => sum + i.price, 0);
-  cartTotal.innerText = `Total : ${total.toFixed(2)} €`;
-  cartCount.innerText = items.length;
-  cartCount.classList.toggle('hidden', items.length === 0);
-}
-</script>
 
 </body>
 </html>
