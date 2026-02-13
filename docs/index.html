@@ -18,6 +18,24 @@
         <a href="#publier" class="hover:underline">Publier</a>
       </nav>
     </header>
+<!-- Ajoute ceci dans le <body>, juste après <header> ou au début de ta page -->
+<div class="header-logo">
+    <img src="9749ce88-c724-482e-a076-56f64b5c8a8d.png" alt="Logo équipe" />
+</div>
+/* Ajoute ceci dans ton fichier CSS */
+.header-logo {
+    position: absolute; /* Pour rester en haut à gauche */
+    top: 10px;          /* Décalage du haut */
+    left: 10px;         /* Décalage de la gauche */
+    width: 80px;        /* Ajuste la taille selon ton besoin */
+    height: auto;
+}
+
+.header-logo img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
 
     <main class="px-6 py-10 space-y-20">
       <!-- Accueil -->
